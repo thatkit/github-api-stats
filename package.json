@@ -1,0 +1,19 @@
+{
+  "name": "github-api-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thatkit/github-api-stats.git"
+  },
+  "author": "thatkit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thatkit/github-api-stats/issues"
+  },
+  "homepage": "https://github.com/thatkit/github-api-stats#readme"
+}
