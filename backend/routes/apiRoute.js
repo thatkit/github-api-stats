@@ -7,8 +7,8 @@ const githubApiEndpoint = 'https://api.github.com';
 
 // @ GET        name, location, bio, etc.
 // @ access     PUBLIC
-router.get('/user', (req, res) => {
-    fetch(`${githubApiEndpoint}/users/thatkit`)
+router.get('/user/:login', (req, res) => {
+    fetch(`${githubApiEndpoint}/users/${req.params.login}`)
         .then(result => result.text())
         .then(data => res.status(200).json(JSON.parse(data)))
         .catch(err => console.log(err)); // # error handler needed
@@ -16,8 +16,8 @@ router.get('/user', (req, res) => {
 
 // @ GET        user's repos
 // @ access     PUBLIC
-router.get('/repos', (req, res) => {
-    fetch(`${githubApiEndpoint}/users/thatkit/repos`)
+router.get('/repos/:login', (req, res) => {
+    fetch(`${githubApiEndpoint}/users/${req.params.login}/repos`)
         .then(result => result.text())
         .then(data => res.status(200).json(JSON.parse(data)))
         .catch(err => console.log(err)); // # error handler needed
@@ -25,8 +25,8 @@ router.get('/repos', (req, res) => {
 
 // @ GET        repo's languages
 // @ access     PUBLIC
-router.get('/langs', (req, res) => {
-    fetch(`${githubApiEndpoint}/repos/thatkit/xpense-tracker/languages`)
+router.get('/langs/:login/:repo', (req, res) => {
+    fetch(`${githubApiEndpoint}/repos/${req.params.login}/${req.params.repo}/languages`)
         .then(result => result.text())
         .then(data => res.status(200).json(JSON.parse(data)))
         .catch(err => console.log(err)); // # error handler needed
