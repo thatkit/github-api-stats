@@ -8,7 +8,7 @@ export const api = createApi({
             query: login => `/user/${login}`,
         }),
     }),
-})
+});
 
 export const {
     useGetUserByLoginQuery
