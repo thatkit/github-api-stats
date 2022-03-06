@@ -6,8 +6,14 @@ export const apiSlice = createApi({
     endpoints: build => ({
         getUserByLogin: build.query({
             query: login => `/user/${login}`
-        })
+        }),
+        getReposByLogin: build.query({
+            query: login => `/repos/${login}`
+        }),
     })
 });
 
-export const { useGetUserByLoginQuery } = apiSlice;
+export const {
+    useGetUserByLoginQuery,
+    useGetReposByLoginQuery
+} = apiSlice;
