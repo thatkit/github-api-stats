@@ -8,16 +8,20 @@ import { useGetUserByLoginQuery } from '../../redux/apiService';
 
 export const Search = () => {
     const [login, setLogin] = useState('');
-    const { data, error, isLoading } = useGetUserByLoginQuery('thatkit');
-    console.log(data)
-    console.log(error)
-    console.log(isLoading)
+    const [skipQuery, setSkipQuery] = useState(true);
     
+    const { data, error, isLoading } = useGetUserByLoginQuery(login, {
+        skip: skipQuery
+    });
+    // console.log(data)
+    // console.log(`Is error? ${error}`)
+    // console.log(`Is loading? ${isLoading}`)
     
-    const handleOnChange = ({ target }) => setLogin(target.value);
-    const handleOnClick = () => {
-        // const { data, error, isLoading } = getUser(login);
+    const handleOnChange = ({ target }) => {
+        setSkipQuery(true);
+        setLogin(target.value);
     }
+    const handleOnClick = () => setSkipQuery(false);
 
     return (
         <InputGroup>
@@ -26,7 +30,7 @@ export const Search = () => {
                 onChange={handleOnChange}
             />
             <Button
-                onClick={handleOnChange}
+                onClick={handleOnClick}
             >Search</Button>
         </InputGroup>
     )
