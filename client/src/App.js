@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { useGetUserByLoginQuery } from './redux/apiSlice';
 
 const App = () => {
-  const [login, setLogin] = useState('');
-  const [skipQuery, setSkipQuery] = useState(true);
+  const [login, setLogin] = useState('thatkit'); // #
+  const [skipQuery, setSkipQuery] = useState(false); // #
   
   const {
     data: user,
