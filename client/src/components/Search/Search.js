@@ -13,9 +13,9 @@ export const Search = () => {
     const { data, error, isLoading } = useGetUserByLoginQuery(login, {
         skip: skipQuery
     });
-    // console.log(data)
-    // console.log(`Is error? ${error}`)
-    // console.log(`Is loading? ${isLoading}`)
+    console.log(data)
+    // console.log(error)
+    // console.log(isLoading)
     
     const handleOnChange = ({ target }) => {
         setSkipQuery(true);
