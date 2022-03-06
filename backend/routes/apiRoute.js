@@ -4,7 +4,6 @@ const fetch = require('cross-fetch');
 const router = express.Router();
 
 const githubApiEndpoint = 'https://api.github.com';
-
 // @ GET        name, location, bio, etc.
 // @ access     PUBLIC
 router.get('/user/:login', (req, res) => {
