@@ -9,7 +9,10 @@ const githubApiEndpoint = 'https://api.github.com';
 router.get('/user/:login', (req, res) => {
     fetch(`${githubApiEndpoint}/users/${req.params.login}`)
         .then(result => result.text())
-        .then(data => res.status(200).json(JSON.parse(data)))
+        .then(data => {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.status(200).json(JSON.parse(data));
+        })
         .catch(err => console.log(err)); // # error handler needed
 });
 
