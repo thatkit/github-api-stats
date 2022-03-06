@@ -61,25 +61,26 @@ router.get('/langstest/:login', (req, res) => {
                 topics: repo.topics
             }));
         })
+        // (3) Adding languages data
         .then(data => {
-            // // (3) Adding languages data
-            // repos.map(repo => {
-            //     console.log('done')
-            //     fetch(`${githubApiEndpoint}/repos/${req.params.login}/${repo.name}/languages`)
-            //         .then(result => result.text())
-            //         .then(langs => {
-            //             const parsedLangs = JSON.parse(langs);
-            //             return {
-            //                 ...repo,
-            //                 langs: parsedLangs
-            //             }
-            //         })
-            // });
+            const langs = {};
 
-            console.log(data)
+            const repos = data.map(repo => {
+                fetch(`${githubApiEndpoint}/repos/${req.params.login}/${repo.name}/languages`)
+                    .then(result => result.text())
+                    .then(langs => {
+                        const parsedLangs = JSON.parse(langs);
+                        return {
+                            ...repo,
+                            langs: parsedLangs
+                        }
+                    })
+            });
+
+            console.log(repos)
 
             res.setHeader('Access-Control-Allow-Origin', '*');
-            res.status(200).json(data);
+            res.status(200).json(repos);
         })
         .catch(err => console.log(err)); // # error handler needed
 });
