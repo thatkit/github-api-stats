@@ -54,12 +54,14 @@ router.get('/langstest/:login', (req, res) => {
         .then(data => {
             const parsedData = JSON.parse(data);
             console.log(parsedData)
-            const repos = parsedData.map(repo => ({
+            return parsedData.map(repo => ({
                 name: repo.name,
                 desc: repo.description,
-                url: repo.url
+                url: repo.url,
+                topics: repo.topics
             }));
-
+        })
+        .then(data => {
             // // (3) Adding languages data
             // repos.map(repo => {
             //     console.log('done')
@@ -74,10 +76,10 @@ router.get('/langstest/:login', (req, res) => {
             //         })
             // });
 
-            console.log(repos)
+            console.log(data)
 
             res.setHeader('Access-Control-Allow-Origin', '*');
-            res.status(200).json(repos);
+            res.status(200).json(data);
         })
         .catch(err => console.log(err)); // # error handler needed
 });
