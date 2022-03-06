@@ -1,0 +1,11 @@
+.footer {
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    color: #6c757d;
+}
+
+.link {
+    color: #6c757d;
+}

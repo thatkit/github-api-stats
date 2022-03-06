@@ -4,6 +4,7 @@ import { Search } from './components/Search/Search';
 import { Container } from 'reactstrap';
 import { useState } from 'react';
 import { useGetUserByLoginQuery } from './redux/apiSlice';
+import { Footer } from './components/Footer/Footer';
 
 const App = () => {
   const [login, setLogin] = useState('thatkit'); // #
@@ -19,6 +20,8 @@ const App = () => {
 
   console.log(error)
   
+
+  // Search field event handlers
   const handleOnChange = ({ target }) => {
     setSkipQuery(true);
     setLogin(target.value);
@@ -38,6 +41,7 @@ const App = () => {
         handleOnClick={handleOnClick}
       />
       {isSuccess && <UserCard user={user} />}
+      <Footer />
     </Container>
   );
 }
