@@ -53,31 +53,12 @@ router.get('/langstest/:login', (req, res) => {
         // (2) Select only necessary properties
         .then(data => {
             const parsedData = JSON.parse(data);
-            console.log(parsedData)
-            return parsedData.map(repo => ({
+            const repos = parsedData.map(repo => ({
                 name: repo.name,
                 desc: repo.description,
                 url: repo.url,
                 topics: repo.topics
             }));
-        })
-        // (3) Adding languages data
-        .then(data => {
-            const langs = {};
-
-            const repos = data.map(repo => {
-                fetch(`${githubApiEndpoint}/repos/${req.params.login}/${repo.name}/languages`)
-                    .then(result => result.text())
-                    .then(langs => {
-                        const parsedLangs = JSON.parse(langs);
-                        return {
-                            ...repo,
-                            langs: parsedLangs
-                        }
-                    })
-            });
-
-            console.log(repos)
 
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).json(repos);
