@@ -2,7 +2,7 @@ const fetch = require('cross-fetch');
 // reusable logic block
 const githubApiEndpoint = 'https://api.github.com';
 
-const langsAggregator = (req, res, next) => {
+const updateReposWithLangs = (req, res, next) => {
     // (1) Updaiting each repo with langs property
     const reposPromise = req.repos.map(repo => {
         return new Promise((resolve, reject) => {
@@ -26,4 +26,4 @@ const langsAggregator = (req, res, next) => {
         .catch(err => console.log(err)); // # error handler needed;
 }
 
-module.exports = langsAggregator;
+module.exports = updateReposWithLangs;

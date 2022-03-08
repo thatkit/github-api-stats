@@ -2,7 +2,7 @@ const fetch = require('cross-fetch');
 // reusable logic block
 const githubApiEndpoint = 'https://api.github.com';
 
-const reposSelector = (req, res, next) => {
+const selectRepos = (req, res, next) => {
     fetch(`${githubApiEndpoint}/users/${req.params.login}/repos`)
         // (1) Convert to a string
         .then(result => result.text())
@@ -23,4 +23,4 @@ const reposSelector = (req, res, next) => {
         .catch(err => console.log(err)); // # error handler needed
 }
 
-module.exports = reposSelector;
+module.exports = selectRepos;

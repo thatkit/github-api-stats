@@ -1,7 +1,7 @@
 const express = require('express');
 const fetch = require('cross-fetch');
-const reposSelector = require('../middleware/reposSelectorMW');
-const langsAggregator = require('../middleware/langsAggregatorMW');
+const selectRepos = require('../middleware/selectRepos');
+const updateReposWithLangs = require('../middleware/updateReposWithLangs');
 
 const router = express.Router();
 
@@ -48,7 +48,7 @@ router.get('/langs/:login/:repo', (req, res) => {
 
 // @ GET        all languages
 // @ access     PUBLIC
-router.get('/langstest/:login', reposSelector, langsAggregator, (req, res) => {
+router.get('/langstest/:login', selectRepos, updateReposWithLangs, (req, res) => {
     // console.log(req.repos)
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).json(req.repos);
