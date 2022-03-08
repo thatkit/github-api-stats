@@ -52,7 +52,8 @@ router.get('/langstest/:login', (req, res) => {
         .then(result => result.text())
         // (2) Select only necessary properties
         .then(data => {
-            const parsedData = JSON.parse(data);
+            let parsedData = JSON.parse(data);
+            parsedData = parsedData.slice(0, 2);
             const repos = parsedData.map(repo => ({
                 name: repo.name,
                 desc: repo.description,
