@@ -17,7 +17,7 @@ const reposSelector = (req, res, next) => {
                 topics: repo.topics
             }));
 
-            req.selectedRepos = repos;
+            req.repos = repos;
             next()
         })
         .catch(err => console.log(err)); // # error handler needed

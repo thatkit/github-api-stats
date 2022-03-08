@@ -49,8 +49,9 @@ router.get('/langs/:login/:repo', (req, res) => {
 // @ GET        all languages
 // @ access     PUBLIC
 router.get('/langstest/:login', reposSelector, langsAggregator, (req, res) => {
-    console.log(req.selectedRepos)
-
+    // console.log(req.repos)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.status(200).json(req.repos);
 });
 
 module.exports = router;
