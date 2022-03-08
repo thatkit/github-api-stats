@@ -50,9 +50,11 @@ router.get('/langs/:login/:repo', (req, res) => {
 // @ GET        all languages
 // @ access     PUBLIC
 router.get('/langstest/:login', selectRepos, updateReposWithLangs, sumLangs, (req, res) => {
-    // console.log(req.langsArr)
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.status(200).json(req.repos);
+    res.status(200).json({
+        langs: req.langs,
+        repos: req.repos
+    });
 });
 
 module.exports = router;

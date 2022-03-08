@@ -22,8 +22,8 @@ const updateReposWithLangs = (req, res, next) => {
         .all(reposPromise)
         .then(repos => {
             req.repos = repos;
-            req.langsArr = [];
-            repos.forEach(repo => req.langsArr.push(repo.langs))
+            req.langs = [];
+            repos.forEach(repo => req.langs.push(repo.langs))
             next();
         })
         .catch(err => console.log(err)); // # error handler needed;
