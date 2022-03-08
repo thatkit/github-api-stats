@@ -9,6 +9,8 @@ const selectRepos = (req, res, next) => {
         // (2) Select only necessary properties
         .then(data => {
             let parsedData = JSON.parse(data);
+            if (!Array.isArray(parsedData)) throw new Error('ds');
+
             parsedData = parsedData.slice(0, 2);
             const repos = parsedData.map(repo => ({
                 name: repo.name,
@@ -18,7 +20,7 @@ const selectRepos = (req, res, next) => {
             }));
 
             req.repos = repos;
-            next()
+            next();
         })
         .catch(err => console.log(err)); // # error handler needed
 }
