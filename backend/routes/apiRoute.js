@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('cross-fetch');
+const reposSelector = require('../middleware/reposSelectorMW');
 
 const router = express.Router();
 
@@ -46,25 +47,26 @@ router.get('/langs/:login/:repo', (req, res) => {
 
 // @ GET        all languages
 // @ access     PUBLIC
-router.get('/langstest/:login', (req, res) => {
-    fetch(`${githubApiEndpoint}/users/${req.params.login}/repos`)
-        // (1) Convert to a string
-        .then(result => result.text())
-        // (2) Select only necessary properties
-        .then(data => {
-            let parsedData = JSON.parse(data);
-            parsedData = parsedData.slice(0, 2);
-            const repos = parsedData.map(repo => ({
-                name: repo.name,
-                desc: repo.description,
-                url: repo.url,
-                topics: repo.topics
-            }));
+router.get('/langstest/:login', reposSelector, (req, res) => {
+    console.log(req.selectedRepos)
+    // fetch(`${githubApiEndpoint}/users/${req.params.login}/repos`)
+    //     // (1) Convert to a string
+    //     .then(result => result.text())
+    //     // (2) Select only necessary properties
+    //     .then(data => {
+    //         let parsedData = JSON.parse(data);
+    //         parsedData = parsedData.slice(0, 2);
+    //         const repos = parsedData.map(repo => ({
+    //             name: repo.name,
+    //             desc: repo.description,
+    //             url: repo.url,
+    //             topics: repo.topics
+    //         }));
 
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.status(200).json(repos);
-        })
-        .catch(err => console.log(err)); // # error handler needed
+    //         res.setHeader('Access-Control-Allow-Origin', '*');
+    //         res.status(200).json(repos);
+    //     })
+    //     .catch(err => console.log(err)); // # error handler needed
 });
 
 module.exports = router;
