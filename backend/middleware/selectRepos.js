@@ -9,7 +9,7 @@ const selectRepos = (req, res, next) => {
         // (2) Select only necessary properties
         .then(data => {
             let parsedData = JSON.parse(data);
-            if (!Array.isArray(parsedData)) throw new Error('ds');
+            if (!Array.isArray(parsedData)) throw new Error(parsedData.message);
 
             parsedData = parsedData.slice(0, 2);
             const repos = parsedData.map(repo => ({

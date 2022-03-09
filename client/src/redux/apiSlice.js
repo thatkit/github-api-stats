@@ -7,13 +7,13 @@ export const apiSlice = createApi({
         getUserByLogin: build.query({
             query: login => `/user/${login}`
         }),
-        getReposByLogin: build.query({
-            query: login => `/repos/${login}`
+        getLangsByLogin: build.query({
+            query: login => `/langs/${login}`
         }),
     })
 });
 
 export const {
     useGetUserByLoginQuery,
-    useGetReposByLoginQuery
+    useGetLangsByLoginQuery
 } = apiSlice;

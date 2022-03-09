@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 import { useState } from 'react';
 import {
   useGetUserByLoginQuery,
-  useGetReposByLoginQuery
+  useGetLangsByLoginQuery
 } from './redux/apiSlice';
 import { Footer } from './components/Footer/Footer';
 
@@ -13,24 +13,26 @@ const App = () => {
   const [login, setLogin] = useState('thatkit'); // #
   const [skipQuery, setSkipQuery] = useState(false); // #
   
-  // QUERY for general user's info
-  const {
-    data: user,
-    error: userError, // # error displaying ? # messae of API rate limit
-    isSuccess: isUserFound
-  } = useGetUserByLoginQuery(login, {
-    skip: skipQuery
-  });
+  // // QUERY for general user's info
+  // const {
+  //   data: user,
+  //   error: userError, // # error displaying ? # messae of API rate limit
+  //   isSuccess: isUserFound
+  // } = useGetUserByLoginQuery(login, {
+  //   skip: skipQuery
+  // });
+  const isUserFound = true;
 
-  // QUERY for user's repos  
-  const {
-    data: repos,
-    error: reposError, // # error displaying ?
-    isSuccess: isReposFound
-  } = useGetReposByLoginQuery(login, {
-    skip: skipQuery
-  });
-  console.log(repos)
+  // // QUERY for general user's info
+  // const {
+  //   data: langsAndRepos,
+  //   error: langsError, // # error displaying ? # messae of API rate limit
+  //   isSuccess: areLangsAndReposLoaded
+  // } = useGetLangsByLoginQuery(login, {
+  //   skip: skipQuery
+  // });
+
+  // console.log(langsAndRepos)
 
   // Search field event handlers
   const handleOnChange = ({ target }) => {
@@ -51,7 +53,10 @@ const App = () => {
         handleOnChange={handleOnChange}
         handleOnClick={handleOnClick}
       />
-      {isUserFound && <UserCard user={user} />}
+      {isUserFound && <UserCard
+        // user={user} 
+        // langsAndRepos={langsAndRepos}
+      />}
       <Footer />
     </Container>
   );
