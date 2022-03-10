@@ -1,0 +1,12 @@
+.pie {
+    height: 10rem;
+    width: 10rem;
+}
+
+.piece {
+    height: 10rem;
+    width: 10rem;
+    border: 1px solid red;
+    border-radius: 50%;
+    position: absolute;
+}
