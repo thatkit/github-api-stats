@@ -1,4 +1,4 @@
-import styles from './PieChart.module.css';
+import styles from './PieChart.module.scss';
 
 export const PieChart = () => {
     const langs = {
@@ -13,7 +13,11 @@ export const PieChart = () => {
         <div className={styles.pie}>
             {Object
                 .entries(langs)
-                .map(lang => <div className={styles.piece}>{lang[0]}: {lang[1]}</div>)}
+                .map((lang, i) => (
+                    <div className={`${styles.piece}__${i}`} key={i}>
+                        {`${lang[0]}: ${lang[1]}`}
+                    </div>
+                ))}
         </div>
     )
 }
