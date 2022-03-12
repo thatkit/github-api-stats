@@ -33,7 +33,6 @@ export const UserCard = ({ langsAndRepos }) => {
     }
 
     const data = {
-        labels: Object.keys(langs),
         datasets: [
             {
                 data: Object.entries(langs).map(lang => lang[1]),
@@ -105,17 +104,21 @@ export const UserCard = ({ langsAndRepos }) => {
             </h2>
 
             <div className={styles.container}>
-                <img
-                    className={styles.icon}
-                    alt="profile icon"
-                    src={user.avatar_url}
-                />
-                <Doughnut
-                    data={data}
-                    options={options}
-                    className={styles.doughnut}
-                />
-                <PieChart />
+                <div className={styles.subContainer}>
+                    <img
+                        className={styles.icon}
+                        alt="profile icon"
+                        src={user.avatar_url}
+                    />
+                </div>
+                <div className={styles.subContainer}>
+                    <Doughnut
+                        data={data}
+                        options={options}
+                        className={styles.doughnut}
+                    />
+                </div>
+                {/* <PieChart /> */}
             </div>
         </Container>
     )

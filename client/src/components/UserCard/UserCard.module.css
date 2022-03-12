@@ -1,7 +1,18 @@
 .container {
-    height: 100vh;
+    height: 100vw;
+    width: 100vw;
     /* display: flex;
     flex-direction: column; */
+}
+
+.subContainer {
+    height: 75%;
+    width: 75%;
+    border: 1px solid red;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon {
@@ -9,11 +20,9 @@
     border-radius: 50%;
     margin: auto;
     border: 1px solid red;
-    position: relative;
-    top: 35%;
-    left: 30%;
 }
 
 .doughnut {
-    border: 1px solid red;
+    height: 75%;
+    width: 75%;
 }
