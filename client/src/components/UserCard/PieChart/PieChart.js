@@ -14,10 +14,12 @@ export const PieChart = () => {
             {Object
                 .entries(langs)
                 .map((lang, i) => (
-                    <div className={`${styles.piece}__${i}`} key={i}>
+                    <div className={`${styles.piece} ${styles[`_${i}`]}`} key={i}>
                         {`${lang[0]}: ${lang[1]}`}
                     </div>
                 ))}
         </div>
     )
 }
+
+// # i don't like the complexity of classNames here

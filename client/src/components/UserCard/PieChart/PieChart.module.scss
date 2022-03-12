@@ -9,24 +9,25 @@
     border: 1px solid red;
     border-radius: 50%;
     position: absolute;
+}
 
-    &__0 {
-        background-color: #0d6efd;
-    }
-    
-    &__1 {
-        background-color: #6c757d;
-    }
-    
-    &__2 {
-        background-color: #198754;
-    }
-    
-    &__3 {
-        background-color: #dc3545;
-    }
-    
-    &__4 {
-        background-color: #ffc107;
-    }
+// ._0 {
+//     background-color: #0d6efd;
+// }
+
+// ._1 {
+//     background-color: #6c757d;
+// }
+
+// ._2 {
+//     background-color: #198754;
+// }
+
+// ._3 {
+//     background-color: #dc3545;
+// }
+
+._4 {
+    background-color: #ffc107;
+    background: conic-gradient(#ffc107 90deg, #fff 90deg);
 }
