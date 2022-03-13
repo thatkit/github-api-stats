@@ -7,23 +7,6 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const UserCard = ({ user, langsAndRepos }) => {
-
-    // const user = {
-    //     login: 'thatkit',
-    //     avatar_url: 'https://avatars.githubusercontent.com/u/47465581?v=4',
-    //     location: 'Vladivostok, Russia'
-    // }
-
-    // const langs = {
-    //     HTML: 25,
-    //     CSS: 30,
-    //     JavaScript: 45,
-    //     Ruby: 11,
-    //     Sass: 15
-    // }
-
-    console.log(langsAndRepos)
-
     const data = {
         datasets: [
             {
