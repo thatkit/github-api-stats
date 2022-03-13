@@ -1,18 +1,8 @@
-import {
-    Card,
-    CardBody,
-    CardTitle,
-    CardSubtitle,
-    Button,
-    Row,
-    Col,
-    Container
-} from 'reactstrap';
+import { Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './UserCard.module.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { PieChart } from './PieChart/PieChart';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -42,12 +32,13 @@ export const UserCard = ({ langsAndRepos }) => {
                     '#198754',
                     '#dc3545',
                     '#ffc107'
-                ],
+                ]
             }
         ],
     }
 
     const options = {
+        maintainAspectRatio: false,
         plugins: {
             tooltip: {
                 callbacks: {
@@ -58,40 +49,6 @@ export const UserCard = ({ langsAndRepos }) => {
     }
 
     return (
-        // <Card className={styles.card}>
-        //     <CardBody>
-        //     <Row>
-        //         <Col xs="6" sm="3" lg="2">
-        //             <img
-        //                 className={styles.icon}
-        //                 alt="profile icon"
-        //                 src={user.avatar_url}
-        //             />
-        //         </Col>
-        //         <Col xs="6" sm="9" lg="10">
-        //             <CardTitle tag="h1">
-        //                 {user.login}
-        //             </CardTitle>
-        //             <CardSubtitle
-        //                 className="mb-4 text-muted"
-        //                 tag="h2"
-        //             >
-        //                 {user.location}
-        //             </CardSubtitle>
-
-        //         </Col>
-        //     </Row>
-        //         <div style={{width: '75%'}}>
-        //             <Doughnut
-        //                 data={data}
-        //                 options={options}
-        //             />
-        //         </div>
-        //         {/* <Button>
-        //             Check In
-        //         </Button> # unable for now */}
-        //     </CardBody>
-        // </Card>
         <Container>
             <h1 tag="h1">
                 {user.login}
@@ -103,15 +60,15 @@ export const UserCard = ({ langsAndRepos }) => {
                 {user.location}
             </h2>
 
-            <div className={styles.container}>
-                <div className={styles.subContainer}>
+            <Container className={styles.cnt}>
+                <div className={styles.topContainer}>
                     <img
                         className={styles.icon}
                         alt="profile icon"
                         src={user.avatar_url}
                     />
                 </div>
-                <div className={styles.subContainer}>
+                <div className={styles.botContainer}>
                     <Doughnut
                         data={data}
                         options={options}
@@ -119,7 +76,7 @@ export const UserCard = ({ langsAndRepos }) => {
                     />
                 </div>
                 {/* <PieChart /> */}
-            </div>
+            </Container>
         </Container>
     )
 }
