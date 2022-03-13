@@ -13,26 +13,26 @@ const App = () => {
   const [login, setLogin] = useState('thatkit'); // #
   const [skipQuery, setSkipQuery] = useState(false); // #
   
-  // // QUERY for general user's info
-  // const {
-  //   data: user,
-  //   error: userError, // # error displaying ? # messae of API rate limit
-  //   isSuccess: isUserFound
-  // } = useGetUserByLoginQuery(login, {
-  //   skip: skipQuery
-  // });
-  const isUserFound = true;
+  // QUERY for general user's info
+  const {
+    data: user,
+    error: userError, // # error displaying ? # messae of API rate limit
+    isSuccess: isUserFound
+  } = useGetUserByLoginQuery(login, {
+    skip: skipQuery
+  });
+  // const isUserFound = true;
 
-  // // QUERY for general user's info
-  // const {
-  //   data: langsAndRepos,
-  //   error: langsError, // # error displaying ? # messae of API rate limit
-  //   isSuccess: areLangsAndReposLoaded
-  // } = useGetLangsByLoginQuery(login, {
-  //   skip: skipQuery
-  // });
+  // QUERY for general user's info
+  const {
+    data: langsAndRepos,
+    error: langsError, // # error displaying ? # messae of API rate limit
+    isSuccess: areLangsAndReposLoaded
+  } = useGetLangsByLoginQuery(login, {
+    skip: skipQuery
+  });
 
-  // console.log(langsAndRepos)
+  console.log(langsAndRepos)
 
   // Search field event handlers
   const handleOnChange = ({ target }) => {
@@ -54,8 +54,8 @@ const App = () => {
         handleOnClick={handleOnClick}
       />
       {isUserFound && <UserCard
-        // user={user} 
-        // langsAndRepos={langsAndRepos}
+        user={user} 
+        langsAndRepos={langsAndRepos}
       />}
       <Footer />
     </Container>
