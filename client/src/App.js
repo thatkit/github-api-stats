@@ -1,4 +1,4 @@
-import './App.css';
+import styles from './App.module.css';
 import { UserCard } from './components/UserCard/UserCard';
 import { Search } from './components/Search/Search';
 import { Container } from 'reactstrap';
@@ -69,22 +69,18 @@ const App = () => {
   const handleOnClick = () => setSkipQuery(false);
 
   return (
-    <Container style={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
-      <Search 
+    <Container className={styles.container}>
+      <Search
+        className={styles.top}
         handleOnChange={handleOnChange}
         handleOnClick={handleOnClick}
       />
       {isUserFound && <UserCard
-        user={user} 
+        className={styles.mid}
+        user={user}
         langsAndRepos={langsAndRepos}
       />}
-      <Footer />
+      <Footer className={styles.bot}/>
     </Container>
   );
 }

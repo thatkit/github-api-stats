@@ -35,16 +35,17 @@ export const UserCard = ({ user, langsAndRepos }) => {
 
     return (
         <Container>
-            <h1 tag="h1">
-                {user.login}
-            </h1>
-            <h2
-                className="mb-4 text-muted"
-                tag="h2"
-            >
-                {user.location}
-            </h2>
-
+            <header className={styles.header}>
+                <h1 tag="h1">
+                    {user.login}
+                </h1>
+                <h2
+                    className="mb-4 text-muted"
+                    tag="h2"
+                >
+                    {user.location}
+                </h2>
+            </header>
             <Container className={styles.cnt}>
                 <div className={styles.topContainer}>
                     <img
