@@ -12,9 +12,6 @@ export const PieChart = () => {
     const user = useContext(UserContext);
     const langsAndRepos = useContext(LangsAndReposContext);
 
-    console.log(user)
-    console.log(langsAndRepos)
-
     const data = {
         datasets: [
             {
