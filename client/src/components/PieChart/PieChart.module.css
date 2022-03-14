@@ -1,6 +1,5 @@
 .pieChart {
-    height: 100%;
-    width: 100%;
+    height: 70%;
     margin: 0;
     padding: 0;
 }
@@ -34,14 +33,13 @@
 }
 
 .icon {
-    width: 45%;
+    width: 50%;
     border-radius: 50%;
-    border: 1px solid red;
     margin: auto;
     position: relative;
 }
 
-.doughnut {
-    height: 75%;
-    width: 75%;
-}
+/* .doughnut {
+    height: 100%;
+    width: 100%;
+} */

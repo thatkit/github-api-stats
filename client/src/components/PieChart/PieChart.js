@@ -27,6 +27,7 @@ export const PieChart = () => {
     }
     
     const options = {
+        maintainAspectRatio: false,
         plugins: {
             tooltip: {
                 callbacks: {
