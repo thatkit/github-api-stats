@@ -1,6 +1,8 @@
 import styles from './App.module.css';
-import { UserCard } from './components/UserCard/UserCard';
+import { PieChart } from './components/PieChart/PieChart';
 import { Search } from './components/Search/Search';
+import { Layout } from './components/Layout/Layout';
+import { Header } from './components/Header/Header';
 import { Container } from 'reactstrap';
 import { useState } from 'react';
 import {
@@ -10,26 +12,6 @@ import {
 import { Footer } from './components/Footer/Footer';
 
 const App = () => {
-  // test
-  // static
-  // data
-
-  const user = {
-      login: 'thatkit',
-      avatar_url: 'https://avatars.githubusercontent.com/u/47465581?v=4',
-      location: 'Vladivostok, Russia'
-  }
-
-  const langsAndRepos = {
-    repos: [],
-    langs: {
-      HTML: 25,
-      CSS: 30,
-      JavaScript: 45,
-      Ruby: 11,
-      Sass: 15
-    }
-  }
 
   const isUserFound = true;
 
@@ -75,11 +57,17 @@ const App = () => {
         handleOnChange={handleOnChange}
         handleOnClick={handleOnClick}
       />
-      {isUserFound && <UserCard
+      {/* {isUserFound && <UserCard
         className={styles.mid}
         user={user}
         langsAndRepos={langsAndRepos}
-      />}
+      />} */}
+      {isUserFound && (
+        <Layout>
+          <Header />
+          <PieChart />
+        </Layout>
+      )}
       <Footer className={styles.bot}/>
     </Container>
   );
