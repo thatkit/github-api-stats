@@ -51,24 +51,20 @@ const App = () => {
   const handleOnClick = () => setSkipQuery(false);
 
   return (
-    <Container className={styles.container}>
-      <Search
-        className={styles.top}
-        handleOnChange={handleOnChange}
-        handleOnClick={handleOnClick}
-      />
-      {/* {isUserFound && <UserCard
-        className={styles.mid}
-        user={user}
-        langsAndRepos={langsAndRepos}
-      />} */}
-      {isUserFound && (
-        <Layout>
-          <Header />
-          <PieChart />
-        </Layout>
-      )}
-      <Footer className={styles.bot}/>
+    <Container>
+      <Layout>
+        <Search
+          handleOnChange={handleOnChange}
+          handleOnClick={handleOnClick}
+        />
+        {isUserFound && (
+          <>
+            <Header />
+            <PieChart />
+          </>
+        )}
+        <Footer />
+      </Layout>
     </Container>
   );
 }

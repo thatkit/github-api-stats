@@ -1,11 +1,11 @@
-.cnt {
-    height: 70vmin;
-    /* width: 70vmin; */
+.pieChart {
+    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.topContainer {
+.top {
     height: 100%;
     width: 100%;
     border: 1px solid red;
@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.botContainer {
+.bot {
     height: 100%;
     width: 100%;
     border: 1px solid red;
@@ -28,7 +28,7 @@
 }
 
 @media (min-aspect-ratio: 1/1) {
-    .botContainer {
+    .bot {
         padding-bottom: 1.25%;
     }
 }

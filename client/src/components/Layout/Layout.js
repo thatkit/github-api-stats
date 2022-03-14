@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import styles from './Layout.module.css';
 
 // test
 // static
@@ -28,7 +29,7 @@ export const Layout = ({ children }) => {
     return (
         <UserContext.Provider value={user}>
             <LangsAndReposContext.Provider value={langsAndRepos}>
-                {children}
+                <div className={styles.layout}>{children}</div>
             </LangsAndReposContext.Provider>
         </UserContext.Provider>
     );

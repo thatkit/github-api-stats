@@ -1,4 +1,3 @@
-import { Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './PieChart.module.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -28,7 +27,6 @@ export const PieChart = () => {
     }
     
     const options = {
-        maintainAspectRatio: false,
         plugins: {
             tooltip: {
                 callbacks: {
@@ -39,21 +37,21 @@ export const PieChart = () => {
     }
         
     return (
-        <Container className={styles.cnt}>
-            <div className={styles.topContainer}>
+        <main className={styles.pieChart}>
+            <div className={styles.top}>
                 <img
                     className={styles.icon}
                     alt="profile icon"
                     src={user.avatar_url}
                 />
             </div>
-            <div className={styles.botContainer}>
+            <div className={styles.bot}>
                 <Doughnut
                     data={data}
                     options={options}
                     className={styles.doughnut}
                 />
             </div>
-        </Container>
+        </main>
     )
 }
