@@ -12,6 +12,7 @@ export const PieChart = () => {
     const langsAndRepos = useContext(LangsAndReposContext);
 
     const data = {
+        labels: Object.entries(langsAndRepos.langs).map(lang => lang[0]),
         datasets: [
             {
                 data: Object.entries(langsAndRepos.langs).map(lang => lang[1]),
@@ -31,7 +32,8 @@ export const PieChart = () => {
         plugins: {
             tooltip: {
                 callbacks: {
-                    label: () => 'hi bois'
+                    beforeLabel: chart => ` ${chart.label}`,
+                    label: chart => ` ${chart.raw} lines of code`
                 }
             }
         }

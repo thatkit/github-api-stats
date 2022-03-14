@@ -20,14 +20,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* adjusting canvas unadjusted height */
-    padding-bottom: 2.25%;
-}
-
-@media (min-aspect-ratio: 1/1) {
-    .bot {
-        padding-bottom: 1.25%;
-    }
 }
 
 .icon {
@@ -35,6 +27,7 @@
     border-radius: 50%;
     margin: auto;
     position: relative;
+    top: 5%;
 }
 
 .doughnut {
