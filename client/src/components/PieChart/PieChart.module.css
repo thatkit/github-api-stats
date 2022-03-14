@@ -7,7 +7,6 @@
 .top {
     height: 100%;
     width: 100%;
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +15,6 @@
 .bot {
     height: 100%;
     width: 100%;
-    border: 1px solid red;
     position: relative;
     bottom: 100%;
     display: flex;
@@ -39,7 +37,7 @@
     position: relative;
 }
 
-/* .doughnut {
+.doughnut {
     height: 100%;
     width: 100%;
-} */
+}
