@@ -35,6 +35,9 @@ export const PieChart = () => {
                     beforeLabel: chart => ` ${chart.label}`,
                     label: chart => ` ${chart.raw} lines of code`
                 }
+            },
+            legend: {
+                display: false
             }
         }
     }
