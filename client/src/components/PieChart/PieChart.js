@@ -31,6 +31,21 @@ export const PieChart = () => {
         maintainAspectRatio: false,
         plugins: {
             tooltip: {
+                enabled: false,
+                external: () => {
+              // Tooltip Element
+              let tooltipEl = document.getElementById('chartjs-tooltip');
+
+              // Create element on first render
+              if (!tooltipEl) {
+                  tooltipEl = document.createElement('div');
+                  tooltipEl.id = 'chartjs-tooltip';
+                  tooltipEl.innerHTML = '<table></table>';
+                  document.body.appendChild(tooltipEl);
+              }
+
+              },
+
                 callbacks: {
                     beforeLabel: chart => ` ${chart.label}`,
                     label: chart => ` ${chart.raw} lines of code`
