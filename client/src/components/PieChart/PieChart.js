@@ -4,6 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useContext } from 'react';
 import { UserContext, LangsAndReposContext } from '../Layout/Layout';
+import { externalTooltipHandler } from './externalTooltip';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,29 +33,16 @@ export const PieChart = () => {
         plugins: {
             tooltip: {
                 enabled: false,
-                external: () => {
-              // Tooltip Element
-              let tooltipEl = document.getElementById('chartjs-tooltip');
-
-              // Create element on first render
-              if (!tooltipEl) {
-                  tooltipEl = document.createElement('div');
-                  tooltipEl.id = 'chartjs-tooltip';
-                  tooltipEl.innerHTML = '<table></table>';
-                  document.body.appendChild(tooltipEl);
-              }
-
-              },
-
-                callbacks: {
-                    beforeLabel: chart => ` ${chart.label}`,
-                    label: chart => ` ${chart.raw} lines of code`
-                }
+                external: externalTooltipHandler
+            },
+            callbacks: {
+                beforeLabel: chart => ` ${chart.label}`,
+                label: chart => ` ${chart.raw} lines of code`
             },
             legend: {
                 display: false
             }
-        }
+        },
     }
         
     return (
