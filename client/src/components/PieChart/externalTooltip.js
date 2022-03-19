@@ -64,8 +64,6 @@ export const externalTooltipHandler = (context) => {
         li.innerHTML = `
           <a href='${repo.url}' target='_blank'>${repo.name}</a>
         `;
-
-        li.addEventListener('onclick', () => console.log('first'))
         
         ul.appendChild(li);
       });

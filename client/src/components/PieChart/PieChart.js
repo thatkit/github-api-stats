@@ -38,10 +38,6 @@ export const PieChart = () => {
                 enabled: false,
                 external: externalTooltipHandler
             },
-            callbacks: {
-                beforeLabel: chart => ` ${chart.label}`,
-                label: chart => ` ${chart.raw} lines of code`
-            },
             legend: {
                 display: false
             }
