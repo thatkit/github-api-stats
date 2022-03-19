@@ -32,6 +32,7 @@ export const PieChart = () => {
     
     const options = {
         maintainAspectRatio: false,
+        events: ['mousemove', 'click', 'touchstart', 'touchmove'],
         plugins: {
             tooltip: {
                 enabled: false,

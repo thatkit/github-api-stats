@@ -23,7 +23,7 @@ export const externalTooltipHandler = (context) => {
   // Tooltip Element
   const {chart, tooltip} = context;
 
-  // console.log(chart)
+  console.log(chart)
   // console.log(tooltip)
 
   const tooltipEl = getOrCreateTooltip(chart);
@@ -64,6 +64,8 @@ export const externalTooltipHandler = (context) => {
         li.innerHTML = `
           <a href='${repo.url}' target='_blank'>${repo.name}</a>
         `;
+
+        li.addEventListener('onclick', () => console.log('first'))
         
         ul.appendChild(li);
       });
