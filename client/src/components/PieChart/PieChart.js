@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './PieChart.module.css';
+import './externalTooltip.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useContext } from 'react';
@@ -17,6 +18,7 @@ export const PieChart = () => {
         datasets: [
             {
                 data: Object.entries(langsAndRepos.langs).map(lang => lang[1]),
+                repos: Object.entries(langsAndRepos.repos).map(repo => repo[1]),
                 backgroundColor: [
                     '#0d6efd',
                     '#6c757d',

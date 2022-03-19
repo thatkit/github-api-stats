@@ -12,14 +12,34 @@ const user = {
 }
 
 const langsAndRepos = {
-    repos: [],
     langs: {
-        HTML: 25,
-        CSS: 30,
-        JavaScript: 45,
-        Ruby: 11,
-        Sass: 15
-    }
+        JavaScript: 3824,
+        HTML: 7134,
+        CSS: 930
+    },
+    repos: [
+        {
+            name: "ca-a-react-app",
+            desc: "How to create a React app Codecademy tutorial",
+            url: "https://api.github.com/repos/thatkit/ca-a-react-app",
+            topics: [],
+            langs: {
+                JavaScript: 1877,
+                HTML: 1721,
+                CSS: 930
+            }
+        },
+        {
+            name: "ca-adhoc",
+            desc: "Codecademy Adhoc repo",
+            url: "https://api.github.com/repos/thatkit/ca-adhoc",
+            topics: [],
+            langs: {
+                HTML: 5413,
+                JavaScript: 1947
+            }
+        }
+    ]
 }
 
 export const UserContext = createContext(user);

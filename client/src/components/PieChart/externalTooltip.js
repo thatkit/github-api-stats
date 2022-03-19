@@ -24,7 +24,7 @@ export const externalTooltipHandler = (context) => {
   const {chart, tooltip} = context;
 
   // console.log(chart)
-  console.log(tooltip)
+  // console.log(tooltip)
 
   const tooltipEl = getOrCreateTooltip(chart);
 
@@ -52,6 +52,20 @@ export const externalTooltipHandler = (context) => {
     tooltipEl.appendChild(span);
 
     // create UNORDERED LIST for the related repos
+    const ul = document.createElement('ul');
+    ul.className = 'repos';
+
+    // console.log(tooltip.dataPoints[0].dataset.repos)
+    tooltip.dataPoints[0].dataset.repos
+      .filter(repo => Object.keys(repo.langs).includes(tooltip.dataPoints[0].label))
+      .forEach(repo => {
+        const li = document.createElement('li');
+        
+        li.innerText = repo.name;
+        
+        ul.appendChild(li);
+      });
+    tooltipEl.appendChild(ul);
   }
 
   const {offsetLeft: positionX, offsetTop: positionY} = chart.canvas;
