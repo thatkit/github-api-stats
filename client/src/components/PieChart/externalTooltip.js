@@ -61,7 +61,9 @@ export const externalTooltipHandler = (context) => {
       .forEach(repo => {
         const li = document.createElement('li');
         
-        li.innerText = repo.name;
+        li.innerHTML = `
+          <a href='${repo.url}' target='_blank'>${repo.name}</a>
+        `;
         
         ul.appendChild(li);
       });
