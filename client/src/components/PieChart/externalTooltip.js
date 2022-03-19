@@ -2,28 +2,18 @@ const getOrCreateTooltip = (chart) => {
   let tooltipEl = chart.canvas.parentNode.querySelector('div');
 
   if (!tooltipEl) {
+
+    // create CONTAINER div
     tooltipEl = document.createElement('div');
 
-    tooltipEl = {
-        ...tooltipEl,
-        style: {
-            ...tooltipEl.style,
-            background: 'rgba(0, 0, 0, 0.7)',
-            borderRadius: '3px',
-            color: 'white',
-            opacity: 1,
-            pointerEvents: 'none',
-            position: 'absolute',
-            transform: 'translate(-50%, 0)',
-            transition: 'all .1s ease'
-        }
-    }
-
-    const table = document.createElement('table');
-    table.style.margin = '0px';
-
-    tooltipEl.appendChild(table);
-    chart.canvas.parentNode.appendChild(tooltipEl);
+    tooltipEl.style.background = 'rgba(0, 0, 0, 0.7)';
+    tooltipEl.style.borderRadius = '4px';
+    tooltipEl.style.color = 'white';
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.pointerEvents = 'none';
+    tooltipEl.style.position = 'absolute';
+    tooltipEl.style.transform = 'translate(-50%, 0)';
+    tooltipEl.style.transition = 'all .1s ease';
   }
 
   return tooltipEl;
@@ -32,6 +22,10 @@ const getOrCreateTooltip = (chart) => {
 export const externalTooltipHandler = (context) => {
   // Tooltip Element
   const {chart, tooltip} = context;
+
+  // console.log(chart)
+  console.log(tooltip)
+
   const tooltipEl = getOrCreateTooltip(chart);
 
   // Hide if no tooltip
@@ -40,64 +34,24 @@ export const externalTooltipHandler = (context) => {
     return;
   }
 
-  // Set Text
-  if (tooltip.body) {
-    const titleLines = tooltip.title || [];
-    const bodyLines = tooltip.body.map(b => b.lines);
-
-    const tableHead = document.createElement('thead');
-
-    titleLines.forEach(title => {
-      const tr = document.createElement('tr');
-      tr.style.borderWidth = 0;
-
-      const th = document.createElement('th');
-      th.style.borderWidth = 0;
-      const text = document.createTextNode(title);
-
-      th.appendChild(text);
-      tr.appendChild(th);
-      tableHead.appendChild(tr);
-    });
-
-    const tableBody = document.createElement('tbody');
-    bodyLines.forEach((body, i) => {
-      const colors = tooltip.labelColors[i];
-
-      const span = document.createElement('span');
-      span.style.background = colors.backgroundColor;
-      span.style.borderColor = colors.borderColor;
-      span.style.borderWidth = '2px';
-      span.style.marginRight = '10px';
-      span.style.height = '10px';
-      span.style.width = '10px';
-      span.style.display = 'inline-block';
-
-      const tr = document.createElement('tr');
-      tr.style.backgroundColor = 'inherit';
-      tr.style.borderWidth = 0;
-
-      const td = document.createElement('td');
-      td.style.borderWidth = 0;
-
-      const text = document.createTextNode(body);
-
-      td.appendChild(span);
-      td.appendChild(text);
-      tr.appendChild(td);
-      tableBody.appendChild(tr);
-    });
-
-    const tableRoot = tooltipEl.querySelector('table');
-
+  // create CHILDREN elements
+  if (tooltip.dataPoints) {
     // Remove old children
-    while (tableRoot.firstChild) {
-      tableRoot.firstChild.remove();
+    while (tooltipEl.firstChild) {
+      tooltipEl.firstChild.remove();
     }
 
-    // Add new children
-    tableRoot.appendChild(tableHead);
-    tableRoot.appendChild(tableBody);
+    // create HEADING for the language name 
+    const h3 = document.createElement('h3');
+    h3.innerText = tooltip.dataPoints[0].label;
+    tooltipEl.appendChild(h3);
+
+    // create SPAN for the number of lines
+    const span = document.createElement('h3');
+    span.innerText = tooltip.dataPoints[0].parsed + ' lines';
+    tooltipEl.appendChild(span);
+
+    // create UNORDERED LIST for the related repos
   }
 
   const {offsetLeft: positionX, offsetTop: positionY} = chart.canvas;
@@ -108,4 +62,6 @@ export const externalTooltipHandler = (context) => {
   tooltipEl.style.top = positionY + tooltip.caretY + 'px';
   tooltipEl.style.font = tooltip.options.bodyFont.string;
   tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
+
+  chart.canvas.parentNode.appendChild(tooltipEl);
 }
