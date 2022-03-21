@@ -4,6 +4,7 @@
   "description": "",
   "main": "backend/server.js",
   "scripts": {
+    "mockup": "nodemon mockupBackend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm run start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
