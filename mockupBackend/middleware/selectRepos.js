@@ -5,7 +5,7 @@ const selectRepos = (req, res, next) => {
         let parsedData = JSON.parse(JSON.stringify(reposJson));
         if (!Array.isArray(parsedData)) throw new Error(parsedData.message);
 
-        parsedData = parsedData.slice(0, 4);
+        parsedData = parsedData.slice(0, 15);
         const repos = parsedData.map(repo => ({
             name: repo.name,
             desc: repo.description,
