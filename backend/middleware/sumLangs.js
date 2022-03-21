@@ -1,7 +1,3 @@
-const fetch = require('cross-fetch');
-// reusable logic block
-const githubApiEndpoint = 'https://api.github.com';
-
 const sumLangs = (req, res, next) => {
     // Reduces array of langs objects to one object
 
