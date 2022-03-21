@@ -1,32 +1,28 @@
-const fetch = require('cross-fetch');
-// reusable logic block
-const githubApiEndpoint = 'https://api.github.com';
+const langsJson = require('../db/langs.json');
 
 const updateReposWithLangs = (req, res, next) => {
-    // (1) Updaiting each repo with langs property
-    const reposPromise = req.repos.map(repo => {
-        return new Promise((resolve, reject) => {
-            fetch(`${githubApiEndpoint}/repos/${req.params.login}/${repo.name}/languages`)
-                .then(result => result.text())
-                .then(result => JSON.parse(result))
-                .then(langs => resolve({
-                    ...repo,
-                    langs
-                }))
-                .catch(err => reject(err)); // # error handler needed
+    try {
+        let parsedLangs = JSON.parse(JSON.stringify(langsJson));
+
+        const modifiedRepos = req.repos.map(repo => {
+            let parsedRepo = JSON.parse(JSON.stringify(repo));
+    
+            const langs = parsedLangs[parsedRepo.name];
+            console.log({
+                ...parsedRepo,
+                langs
+            })
+            return {
+                ...parsedRepo,
+                langs
+            }
         });
-    });
-    // (2) Waiting for all repos to get updated with langs,
-    // AND assigning repos & langs array data to request
-    Promise
-        .all(reposPromise)
-        .then(repos => {
-            req.repos = repos;
-            req.langs = [];
-            repos.forEach(repo => req.langs.push(repo.langs))
-            next();
-        })
-        .catch(err => console.log(err)); // # error handler needed;
+
+        req.repos = modifiedRepos;
+        next();
+    } catch(err) {
+        res.status(404).json(err);
+    }
 }
 
 module.exports = updateReposWithLangs;
