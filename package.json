@@ -2,7 +2,7 @@
   "name": "github-api-stats",
   "version": "1.0.0",
   "description": "",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
     "mockup": "nodemon mockupBackend/server.js",
     "server": "nodemon backend/server.js",

@@ -1,7 +1,6 @@
 import styles from './App.module.css';
 import { PieChart } from './components/PieChart/PieChart';
 import { Search } from './components/Search/Search';
-import { Layout } from './components/Layout/Layout';
 import { Header } from './components/Header/Header';
 import { Container } from 'reactstrap';
 import { useState } from 'react';
@@ -12,36 +11,26 @@ import {
 import { Footer } from './components/Footer/Footer';
 
 const App = () => {
-
-  const isUserFound = true;
-
-  // dynamic
-  // data
-  // logic
-
   const [login, setLogin] = useState('thatkit'); // #
   const [skipQuery, setSkipQuery] = useState(false); // #
   
-  // // QUERY for general user's info
-  // const {
-  //   data: user,
-  //   error: userError, // # error displaying ? # messae of API rate limit
-  //   isSuccess: isUserFound
-  // } = useGetUserByLoginQuery(login, {
-  //   skip: skipQuery
-  // });
-  // // const isUserFound = true;
+  // QUERY for general user's info
+  const {
+    data: user,
+    error: userError, // # error displaying ? # message of API rate limit
+    isSuccess: isUserFound
+  } = useGetUserByLoginQuery(login, {
+    skip: skipQuery
+  });
 
-  // // QUERY for general user's info
-  // const {
-  //   data: langsAndRepos,
-  //   error: langsError, // # error displaying ? # messae of API rate limit
-  //   isSuccess: areLangsAndReposLoaded
-  // } = useGetLangsByLoginQuery(login, {
-  //   skip: skipQuery
-  // });
-
-  // console.log(langsAndRepos)
+  // QUERY for repos and langs
+  const {
+    data: langsAndRepos,
+    error: langsError, // # error displaying ? # message of API rate limit
+    isSuccess: areLangsAndReposLoaded
+  } = useGetLangsByLoginQuery(login, {
+    skip: skipQuery
+  });
 
   // Search field event handlers
   const handleOnChange = ({ target }) => {
@@ -51,20 +40,18 @@ const App = () => {
   const handleOnClick = () => setSkipQuery(false);
 
   return (
-    <Container>
-      <Layout>
+    <Container className={styles.layout}>
         <Search
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
         />
         {isUserFound && (
           <>
-            <Header />
-            <PieChart />
+            <Header user={user} />
+            <PieChart user={user} langsAndRepos={langsAndRepos} />
           </>
         )}
         <Footer />
-      </Layout>
     </Container>
   );
 }

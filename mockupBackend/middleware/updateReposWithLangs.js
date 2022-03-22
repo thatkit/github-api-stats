@@ -6,7 +6,7 @@ const updateReposWithLangs = (req, res, next) => {
 
         req.langs = [];
 
-        const modifiedRepos = req.repos.map(repo => {
+        const modifiedRepos = req.repos.map((repo, i) => {
             const parsedRepo = JSON.parse(JSON.stringify(repo));
             const langs = parsedLangs.filter(({ name }) => name === parsedRepo.name)[0].langs;
 

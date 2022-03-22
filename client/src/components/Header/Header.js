@@ -1,10 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './Header.module.css';
-import { useContext } from 'react';
-import { UserContext } from '../Layout/Layout';
 
-export const Header = () => {
-    const user = useContext(UserContext);
+export const Header = ({ user }) => {
 
     return (
         <header className={styles.header}>

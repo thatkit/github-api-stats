@@ -3,16 +3,11 @@ import styles from './PieChart.module.css';
 import './externalTooltip.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { useContext } from 'react';
-import { UserContext, LangsAndReposContext } from '../Layout/Layout';
 import { externalTooltipHandler } from './externalTooltip';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const PieChart = () => {
-    const user = useContext(UserContext);
-    const langsAndRepos = useContext(LangsAndReposContext);
-
+export const PieChart = ({ user, langsAndRepos }) => {
     const data = {
         labels: Object.entries(langsAndRepos.langs).map(lang => lang[0]),
         datasets: [
