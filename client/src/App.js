@@ -7,7 +7,7 @@ import { useState } from 'react';
 import {
   useGetUserByLoginQuery,
   useGetLangsByLoginQuery
-} from './redux/apiSlice';
+} from './redux/apiService';
 import { Footer } from './components/Footer/Footer';
 
 const App = () => {
