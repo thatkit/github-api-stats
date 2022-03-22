@@ -9,7 +9,7 @@ const selectRepos = (req, res, next) => {
         const repos = parsedData.map(repo => ({
             name: repo.name,
             desc: repo.description,
-            url: repo.url,
+            githubUrl: repo.html_url,
             topics: repo.topics
         }));
 
