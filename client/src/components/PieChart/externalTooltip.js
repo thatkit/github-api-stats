@@ -19,11 +19,11 @@ export const externalTooltipHandler = (context) => {
 
   const tooltipEl = getOrCreateTooltip(chart);
 
-  // Hide if no tooltip
-  if (tooltip.opacity === 0) {
-    tooltipEl.style.opacity = 0;
-    return;
-  }
+  // // Hide if no tooltip
+  // if (tooltip.opacity === 0) {
+  //   tooltipEl.style.opacity = 0;
+  //   return;
+  // } // # was needed when I wanted to make tooltip disappear when not hovered
 
   // create CHILDREN elements
   if (tooltip.dataPoints) {
@@ -34,15 +34,15 @@ export const externalTooltipHandler = (context) => {
 
     const selectedLang = tooltip.dataPoints[0].label;
 
+    // create SPAN for the number of lines
+    const span = document.createElement('span');
+    span.innerText = tooltip.dataPoints[0].parsed + ' lines';
+    tooltipEl.appendChild(span);
+
     // create HEADING for the language name 
     const h3 = document.createElement('h3');
     h3.innerText = selectedLang;
     tooltipEl.appendChild(h3);
-
-    // create SPAN for the number of lines
-    const span = document.createElement('h3');
-    span.innerText = tooltip.dataPoints[0].parsed + ' lines';
-    tooltipEl.appendChild(span);
 
     // create UNORDERED LIST for the related repos
     const ul = document.createElement('ul');
@@ -67,8 +67,6 @@ export const externalTooltipHandler = (context) => {
 
   // Display, position, and set styles for font
   tooltipEl.style.opacity = 1;
-  tooltipEl.style.left = positionX + tooltip.caretX + 'px';
-  tooltipEl.style.top = positionY + tooltip.caretY + 'px';
   tooltipEl.style.font = tooltip.options.bodyFont.string;
   tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
 

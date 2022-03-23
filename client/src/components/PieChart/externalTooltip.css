@@ -1,15 +1,15 @@
 .tooltipEl {
-    height: 50%;
-    width: 50%;
+    height: 49%;
+    width: 49%;
     background: rgba(0, 0, 0, 0.7);
-    border-radius: 4px;
+    border-radius: 50%;
     color: white;
     opacity: 1;
     pointer-events: none;
     position: absolute;
-    transform: translate(-50%, 0);
     transition: all .1s ease;
-    overflow-y: scroll;
+    overflow: hidden;
+    text-align: center;
 }
 
 .repos {
@@ -17,6 +17,15 @@
     padding: 0;
 }
 
+ul {
+    /* height: 100%;
+    width: 100%;
+    display: flex; */
+
+}
+
 li {
+    height: auto;
+    width: auto;
     pointer-events: auto;
 }
