@@ -15,5 +15,5 @@ app.use(express.json());
 // routes
 app.use('/api', require('./routes/apiRoute'));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Running mockup server. Listening to port ${port}`));

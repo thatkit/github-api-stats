@@ -1,35 +1,38 @@
 const express = require('express');
-const { Octokit } = require('@octokit/core');
-const { request } = require('@octokit/request');
+let { request } = require('@octokit/request');
 const { createAppAuth  } = require('@octokit/auth-app');
 require('dotenv').config({ path: './mockupBackend/config/.env' });
+// Middleware
 const selectRepos = require('../middleware/selectRepos');
 const updateReposWithLangs = require('../middleware/updateReposWithLangs');
 const sumLangs = require('../middleware/sumLangs');
 
 const router = express.Router();
 
+// Auth middleware config
 const auth = createAppAuth({
     appId: process.env.APP_ID,
     privateKey: process.env.PRIVATE_KEY,
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    installationId: 24432550
+    installationId: process.env.INSTALLATION_ID
 });
-let token = '';
-auth({ type: 'installation' }).then(data => {
-    token = data.token;
-})
-const octokit = new Octokit();
+
+router.use((req, res, next) => {
+    auth({ type: 'installation' }).then(({ token }) => {
+        request = request.defaults({
+            headers: { authorization: `token ${token}` },
+            org: 'thatkit-org',
+            type: 'installation'
+        });
+        next();
+    });
+});
 
 // @ GET        name, location, bio, etc.
 // @ access     PUBLIC
 router.get('/user/:login', (req, res) => {
-    octokit.request(`GET /users/${req.params.login}`, {
-            headers: { authorization: `token ${token}` },
-            org: 'thatkit-org',
-            type: 'installation'
-        })
+    request(`GET /users/${req.params.login}`)
         .then(user => res.status(200).json(user))
         .catch(err => console.log(err)); // # error handler needed
 });
