@@ -29,7 +29,7 @@ router.use((req, res, next) => {
     });
 });
 
-// @ GET        name, location, bio, etc.
+// @ GET        user's info
 // @ access     PUBLIC
 router.get('/user/:login', (req, res) => {
     request(`GET /users/${req.params.login}`)
@@ -44,6 +44,7 @@ router.get('/langs/:login',
     updateReposWithLangs,
     sumLangs,
     (req, res) => {
+
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).json({
             langs: req.langs,
