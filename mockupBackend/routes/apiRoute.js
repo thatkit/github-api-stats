@@ -1,23 +1,19 @@
 const express = require('express');
-const fetch = require('cross-fetch');
+const { Octokit } = require('@octokit/rest');
+require('dotenv').config({ path: './mockupBackend/config/.env' });
 const selectRepos = require('../middleware/selectRepos');
 const updateReposWithLangs = require('../middleware/updateReposWithLangs');
 const sumLangs = require('../middleware/sumLangs');
 
 const router = express.Router();
-
-// reusable logic block
-const githubApiEndpoint = 'https://api.github.com';
-// # API rate limit error handler
+const octokit = new Octokit({ auth: process.env.AUTH_TOKEN });
 
 // @ GET        name, location, bio, etc.
 // @ access     PUBLIC
 router.get('/user/:login', (req, res) => {
-    fetch(`${githubApiEndpoint}/users/${req.params.login}`)
-        .then(result => result.text())
-        .then(data => {
-            res.status(200).json(JSON.parse(data));
-        })
+    octokit
+        .request(`GET /users/${req.params.login}`)
+        .then(user => res.status(200).json(user))
         .catch(err => console.log(err)); // # error handler needed
 });
 
