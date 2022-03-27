@@ -17,6 +17,7 @@ const githubAuth = (req, res, next) => {
                 org: process.env.ORG,
                 type: 'installation'
             });
+            console.log('0', 'auth')
             req.requestWithAuth = requestWithAuth;
             next();
         })

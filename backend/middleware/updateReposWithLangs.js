@@ -1,18 +1,15 @@
-const fetch = require('cross-fetch');
-// reusable logic block
-const githubApiEndpoint = 'https://api.github.com';
-
 const updateReposWithLangs = (req, res, next) => {
+    console.log('2', 'updaterepos')
     // (1) Updaiting each repo with langs property
     const reposPromise = req.repos.map(repo => {
         return new Promise((resolve, reject) => {
-            fetch(`${githubApiEndpoint}/repos/${req.params.login}/${repo.name}/languages`)
-                .then(result => result.text())
-                .then(result => JSON.parse(result))
-                .then(langs => resolve({
-                    ...repo,
-                    langs
-                }))
+            req.requestWithAuth(`GET /repos/${req.params.login}/${repo.name}/languages`)
+                .then(({ data }) => {
+                    resolve({
+                        ...repo,
+                        langs: data
+                    })
+                })
                 .catch(err => reject(err)); // # error handler needed
         });
     });

@@ -25,8 +25,11 @@ router.get('/langs/:login',
     updateReposWithLangs,
     sumLangs,
     (req, res) => {
-
         res.setHeader('Access-Control-Allow-Origin', '*');
+        // console.log({
+        //     langs: req.langs,
+        //     repos: req.repos
+        // })
         res.status(200).json({
             langs: req.langs,
             repos: req.repos

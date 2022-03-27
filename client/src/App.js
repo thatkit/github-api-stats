@@ -3,7 +3,7 @@ import { PieChart } from './components/PieChart/PieChart';
 import { Search } from './components/Search/Search';
 import { Header } from './components/Header/Header';
 import { Container } from 'reactstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useGetUserByLoginQuery,
   useGetLangsByLoginQuery
@@ -17,7 +17,7 @@ const App = () => {
   // QUERY for general user's info
   const {
     data: user,
-    error: userError, // # error displaying ? # message of API rate limit
+    error: userError, // # error displaying ?
     isSuccess: isUserFound
   } = useGetUserByLoginQuery(login, {
     skip: skipQuery
@@ -26,7 +26,7 @@ const App = () => {
   // QUERY for repos and langs
   const {
     data: langsAndRepos,
-    error: langsError, // # error displaying ? # message of API rate limit
+    error: langsError, // # error displaying ?
     isSuccess: areLangsAndReposLoaded
   } = useGetLangsByLoginQuery(login, {
     skip: skipQuery
