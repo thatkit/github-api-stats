@@ -48,14 +48,8 @@ const App = () => {
   }
   const handleOnClick = () => setSkipQuery(false);
 
-  useEffect(() => {
-    console.log(token)
-    token && setCookie('token', token.token);
-  }, [token]);
-
-  useEffect(() => {
-    console.log(user)
-  }, [user]);
+  useEffect(() => token && setCookie('token', token.token), [token]);
+  // # token is renewed every rerender which is a waste
 
   return (
     <Container className={styles.layout}>
@@ -65,8 +59,8 @@ const App = () => {
         />
         {(isUserFound && areLangsAndReposLoaded) && (
           <>
-            <Header user={user} />
-            <PieChart user={user} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
+            <Header user={user.data} />
+            <PieChart user={user.data} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
           </>
         )}
         <Footer />

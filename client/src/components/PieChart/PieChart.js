@@ -45,7 +45,7 @@ export const PieChart = ({ user, langs, repos }) => {
                 <img
                     className={styles.icon}
                     alt="profile icon"
-                    src={user.data.avatar_url}
+                    src={user.avatar_url}
                 />
             </div>
             <div className={styles.bot}>
