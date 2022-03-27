@@ -1,5 +1,4 @@
 const sumLangs = (req, res, next) => {
-    console.log('3', 'sumlangs')
     // Reduces array of langs objects to one object
     const langsObj = {};
     // Main loop

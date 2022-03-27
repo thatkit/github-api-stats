@@ -5,7 +5,6 @@ const customRequest = request.defaults({
 });
 
 const updateReposWithLangs = (req, res, next) => {
-    console.log('2', 'updaterepos')
     // (1) Updaiting each repo with langs property
     const reposPromise = req.repos.map(repo => {
         return new Promise((resolve, reject) => {

@@ -5,7 +5,6 @@ const customRequest = request.defaults({
 });
 
 const selectRepos = (req, res, next) => {
-    console.log('1', 'selectrepos')
     customRequest(`GET /users/${req.params.login}/repos`, {
         headers: {authorization: `token ${req.headers.token}`}
     })

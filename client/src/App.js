@@ -5,16 +5,25 @@ import { Header } from './components/Header/Header';
 import { Container } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import {
+  useGetAuthTokenQuery,
   useGetUserByLoginQuery,
   useGetLangsByLoginQuery
 } from './redux/apiService';
 import { Footer } from './components/Footer/Footer';
+import { setCookie } from './helpers/cookies';
 
 const App = () => {
   const [login, setLogin] = useState('thatkit'); // #
   const [skipQuery, setSkipQuery] = useState(false); // #
-  
+
   // QUERY for general user's info
+  const {
+    data: token,
+    error: tokenError, // # error displaying ?
+    isSuccess: isTokenOk
+  } = useGetAuthTokenQuery();
+  
+  // QUERY for auth token
   const {
     data: user,
     error: userError, // # error displaying ?
@@ -39,7 +48,14 @@ const App = () => {
   }
   const handleOnClick = () => setSkipQuery(false);
 
-  console.log(langsAndRepos)
+  useEffect(() => {
+    console.log(token)
+    token && setCookie('token', token.token);
+  }, [token]);
+
+  useEffect(() => {
+    console.log(user)
+  }, [user]);
 
   return (
     <Container className={styles.layout}>
@@ -47,10 +63,10 @@ const App = () => {
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
         />
-        {isUserFound && (
+        {(isUserFound && areLangsAndReposLoaded) && (
           <>
             <Header user={user} />
-            <PieChart user={user} langsAndRepos={langsAndRepos} />
+            <PieChart user={user} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
           </>
         )}
         <Footer />

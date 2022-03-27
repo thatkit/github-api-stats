@@ -7,13 +7,13 @@ import { externalTooltipHandler } from './externalTooltip';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const PieChart = ({ user, langsAndRepos }) => {
+export const PieChart = ({ user, langs, repos }) => {    
     const data = {
-        labels: Object.entries(langsAndRepos.langs).map(lang => lang[0]),
+        labels: Object.entries(langs).map(lang => lang[0]),
         datasets: [
             {
-                data: Object.entries(langsAndRepos.langs).map(lang => lang[1]),
-                repos: Object.entries(langsAndRepos.repos).map(repo => repo[1]),
+                data: Object.entries(langs).map(lang => lang[1]),
+                repos: Object.entries(repos).map(repo => repo[1]),
                 backgroundColor: [
                     '#0d6efd',
                     '#6c757d',
@@ -24,7 +24,7 @@ export const PieChart = ({ user, langsAndRepos }) => {
             }
         ],
     }
-    
+
     const options = {
         maintainAspectRatio: false,
         events: ['mousemove', 'click', 'touchstart', 'touchmove'],
@@ -45,7 +45,7 @@ export const PieChart = ({ user, langsAndRepos }) => {
                 <img
                     className={styles.icon}
                     alt="profile icon"
-                    src={user.avatar_url}
+                    src={user.data.avatar_url}
                 />
             </div>
             <div className={styles.bot}>
