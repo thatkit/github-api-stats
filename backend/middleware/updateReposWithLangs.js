@@ -1,9 +1,17 @@
+const { request } = require('@octokit/request');
+const customRequest = request.defaults({
+    org: process.env.ORG,
+    type: 'installation'
+});
+
 const updateReposWithLangs = (req, res, next) => {
     console.log('2', 'updaterepos')
     // (1) Updaiting each repo with langs property
     const reposPromise = req.repos.map(repo => {
         return new Promise((resolve, reject) => {
-            req.requestWithAuth(`GET /repos/${req.params.login}/${repo.name}/languages`)
+            customRequest(`GET /repos/${req.params.login}/${repo.name}/languages`, {
+                headers: {authorization: `token ${req.headers.token}`}
+            })
                 .then(({ data }) => {
                     resolve({
                         ...repo,

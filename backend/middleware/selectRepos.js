@@ -1,6 +1,14 @@
+const { request } = require('@octokit/request');
+const customRequest = request.defaults({
+    org: process.env.ORG,
+    type: 'installation'
+});
+
 const selectRepos = (req, res, next) => {
     console.log('1', 'selectrepos')
-    req.requestWithAuth(`GET /users/${req.params.login}/repos`)
+    customRequest(`GET /users/${req.params.login}/repos`, {
+        headers: {authorization: `token ${req.headers.token}`}
+    })
         .then(({ data }) => {
             const repos = data.map(repo => ({
                 name: repo.name,

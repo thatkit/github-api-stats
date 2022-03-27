@@ -39,6 +39,8 @@ const App = () => {
   }
   const handleOnClick = () => setSkipQuery(false);
 
+  console.log(langsAndRepos)
+
   return (
     <Container className={styles.layout}>
         <Search
