@@ -5,32 +5,59 @@
     border-radius: 50%;
     color: white;
     opacity: 1;
-    pointer-events: none;
+    /* pointer-events: none; # i don't need it no more?*/
     position: absolute;
     transition: all .1s ease;
     overflow: hidden;
     text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+span {
+    margin-top: 1.5rem;
+}
+
+h3 {
+    font-size: 2em;
+    width: 100%;
 }
 
 .repos {
-    list-style: none;
-    padding: 0;
-}
-
-ul {
     height: 100%;
     width: 100%;
+    padding: 0;
+    margin: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style: none;
+    overflow-y: scroll;
+    scrollbar-width: 0;
+}
+
+.repos::-webkit-scrollbar {
+    display: none;
 }
 
 li {
-    height: auto;
+    height: fit-content;
     width: fit-content;
-    margin-right: 1rem;
+    border-radius: 1rem;
+    padding: 0.1rem 0.4rem;
+    margin-bottom: 0.5rem;
     pointer-events: auto;
+    display: inline-flex;
+    /* word-break: break-all; */
 }
 
-li:last-child {
-    margin-right: 0;
+li > a {
+    text-decoration: none;
+    color: #fff;
+}
+
+li > a:hover {
+    color: inherit;
+    opacity: 0.75;
 }

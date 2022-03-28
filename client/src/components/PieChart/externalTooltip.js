@@ -14,8 +14,8 @@ export const externalTooltipHandler = (context) => {
   // Tooltip Element
   const {chart, tooltip} = context;
 
-  console.log(chart)
-  console.log(tooltip)
+  // console.log(chart) // # for testing
+  // console.log(tooltip) // # for testing
 
   const tooltipEl = getOrCreateTooltip(chart);
 
@@ -36,7 +36,7 @@ export const externalTooltipHandler = (context) => {
 
     // create SPAN for the number of lines
     const span = document.createElement('span');
-    span.innerText = tooltip.dataPoints[0].parsed + ' lines';
+    span.innerText = tooltip.dataPoints[0].formattedValue + ' lines';
     tooltipEl.appendChild(span);
 
     // create HEADING for the language name 
@@ -56,6 +56,7 @@ export const externalTooltipHandler = (context) => {
         const li = document.createElement('li');
         
         li.innerHTML = `<a href='${githubUrl}' target='_blank'>${name}</a>`;
+        li.style.backgroundColor = tooltip.dataPoints[0].element.options.backgroundColor;
         
         ul.appendChild(li);
       });
@@ -68,7 +69,6 @@ export const externalTooltipHandler = (context) => {
   // Display, position, and set styles for font
   tooltipEl.style.opacity = 1;
   tooltipEl.style.font = tooltip.options.bodyFont.string;
-  tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
 
   chart.canvas.parentNode.appendChild(tooltipEl);
 }
