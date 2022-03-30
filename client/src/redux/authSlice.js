@@ -5,7 +5,6 @@ const authSlice = createSlice({
     initialState: { authToken: '' },
     reducers: {
         storeAuthToken(state, { payload }) {
-            // console.log(payload)
             return {
                 ...state,
                 authToken: payload
