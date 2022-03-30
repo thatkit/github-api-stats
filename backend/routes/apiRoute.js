@@ -13,9 +13,9 @@ const sumLangs = require('../middleware/sumLangs');
 
 const router = express.Router();
 
-// @ GET        auth token
+// @ POST       auth token
 // @ access     PUBLIC
-router.get('/auth', (req, res) => {
+router.post('/auth', (req, res) => {
     const auth = createAppAuth({
         appId: process.env.APP_ID,
         privateKey: process.env.PRIVATE_KEY,
