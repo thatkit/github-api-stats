@@ -15,11 +15,12 @@ export const AuthHOC = ({ children }) => {
     useEffect(() => {
       !storedToken && auth.status === 'fulfilled' && dispatch(storeAuthToken(auth.data.token));
     }, [auth]);
-      
-    // return <>{children}</>;
+    
+    if (auth.status === 'fulfilled') {
+      return <>{children}</>;
+    }
     return <Placeholder />;
 }
 
-// # maybe make the 'Search' button inactive until the auth is completed
 // # logic for no token or expired/invalid token
 // # set and get Cookies maybe?

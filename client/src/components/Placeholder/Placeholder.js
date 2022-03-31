@@ -6,15 +6,11 @@ import { useEffect, useState } from 'react';
 export const Placeholder = () => {
     const [progressValue, setProgressValue] = useState(0);
     useEffect(() => {
-        let firstHalfIntervalId;
-        if (progressValue !== 100) {
-            firstHalfIntervalId = setInterval(() => {
-                console.log(progressValue)
-                setProgressValue(progressValue + 1);
-                console.log(progressValue)
-            }, 400);
+        let firstIntervalId;
+        if (progressValue <= 100) {
+            firstIntervalId = setInterval(() => setProgressValue(progressValue + 2), 100);
         }
-        return () => clearInterval(firstHalfIntervalId);
+        return () => clearInterval(firstIntervalId);
     }, [progressValue]);
     
     return (
