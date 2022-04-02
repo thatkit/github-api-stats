@@ -4,6 +4,7 @@ import './externalTooltip.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { externalTooltipHandler } from './externalTooltip';
+import { useEffect } from 'react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -38,9 +39,9 @@ export const PieChart = ({ user, langs, repos }) => {
             }
         },
     }
-        
+
     return (
-        <main className={styles.pieChart}>
+        <main className={`${styles.pieChart} doughnutCnt`}>
             <div className={styles.top}>
                 <img
                     className={styles.icon}

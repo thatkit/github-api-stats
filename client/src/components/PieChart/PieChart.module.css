@@ -1,15 +1,8 @@
 .pieChart {
-    height: 100vmin;
-    width: 100vmin;
+    height: 75vmin;
+    width: 75vmin;
     margin: 0;
     padding: 0;
-}
-
-@media (min-aspect-ratio: 1/1) {
-    .pieChart {
-        height: 70vmin;
-        width: 70vmin;
-    }
 }
 
 .top {

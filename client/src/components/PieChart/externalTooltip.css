@@ -5,7 +5,6 @@
     border-radius: 50%;
     color: white;
     opacity: 1;
-    /* pointer-events: none; # i don't need it no more?*/
     position: absolute;
     transition: all .1s ease;
     overflow: hidden;
@@ -49,7 +48,6 @@ li {
     margin-bottom: 0.5rem;
     pointer-events: auto;
     display: inline-flex;
-    /* word-break: break-all; */
 }
 
 li > a {

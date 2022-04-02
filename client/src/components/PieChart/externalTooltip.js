@@ -12,18 +12,20 @@ const getOrCreateTooltip = chart => {
 
 export const externalTooltipHandler = (context) => {
   // Tooltip Element
-  const {chart, tooltip} = context;
-
-  // console.log(chart) // # for testing
-  // console.log(tooltip) // # for testing
+  const { chart, tooltip } = context;
 
   const tooltipEl = getOrCreateTooltip(chart);
 
-  // // Hide if no tooltip
-  // if (tooltip.opacity === 0) {
-  //   tooltipEl.style.opacity = 0;
-  //   return;
-  // } // # was needed when I wanted to make tooltip disappear when not hovered
+  // Hide if no tooltip
+  if (tooltip.opacity === 0) {
+    const chartEl = document.getElementsByClassName('doughnutCnt')[0];
+    chartEl.addEventListener('mouseleave', () => {
+      tooltipEl.style.display = 'none';
+    });
+    return;
+  } else {
+    tooltipEl.style.display = 'flex';
+  }
 
   // create CHILDREN elements
   if (tooltip.dataPoints) {
@@ -36,7 +38,7 @@ export const externalTooltipHandler = (context) => {
 
     // create SPAN for the number of lines
     const span = document.createElement('span');
-    span.innerText = tooltip.dataPoints[0].formattedValue + ' lines';
+    span.innerText = tooltip.dataPoints[0].formattedValue + ' bytes';
     tooltipEl.appendChild(span);
 
     // create HEADING for the language name 
