@@ -14,9 +14,7 @@ const {
 const router = express.Router();
 
 router.get('/auth', getAuth);
-
 router.get('/user/:login', getUser);
-
 router.get('/langs/:login',
     selectRepos,
     updateReposWithLangs,

@@ -6,15 +6,18 @@ const customRequest = request.defaults({
 
 const selectRepos = (req, res, next) => {
     customRequest(`GET /users/${req.params.login}/repos`, {
-        headers: {authorization: `token ${req.headers.token}`}
+        headers: { authorization: `token ${req.headers.token}` }
     })
         .then(({ data }) => {
-            const repos = data.map(repo => ({
-                name: repo.name,
-                desc: repo.description,
-                githubUrl: repo.html_url,
-                topics: repo.topics
-            }));
+            const repos = data
+                .filter(({ owner }) => owner.login === req.params.login)
+                .map((repo, index) => ({
+                    name: repo.name,
+                    desc: repo.description,
+                    githubUrl: repo.html_url,
+                    topics: repo.topics,
+                    index
+                }));
 
             req.repos = repos;
             next();
