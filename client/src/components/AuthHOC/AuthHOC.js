@@ -8,7 +8,9 @@ import { Placeholder } from '../Placeholder/Placeholder';
 export const AuthHOC = ({ children }) => {
     const storedToken = useSelector(({ authSlice }) => authSlice.authToken);
     
-    const [getAuth, auth] = useGetAuthTokenMutation();
+    const [getAuth, auth] = useGetAuthTokenMutation({
+      fixedCacheKey: 'authToken'
+    });
     useEffect(() => !storedToken && getAuth(), []);
 
     const dispatch = useDispatch();

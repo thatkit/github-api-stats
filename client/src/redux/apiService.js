@@ -3,10 +3,10 @@ import { getCookie, setCookie } from '../helpers/cookies';
 
 export const apiService = createApi({
     reducerPath: 'apiService',
+    tagTypes: [],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5000/api',
         prepareHeaders: (headers, { getState }) => {
-            console.log(getState().authSlice.authToken)
             // if (getState().authSlice.authToken) {
                 headers.set('token', getState().authSlice.authToken);
             // }
@@ -20,9 +20,11 @@ export const apiService = createApi({
                 method: 'POST',
                 headers: (headers) => {
                     delete headers.token;
+                    console.log(headers)
                     return headers;
                 }
-            })
+            }),
+            keepUnusedDataFor: 180
         }),
         getUserByLogin: build.query({
             query: login => `/user/${login}`
