@@ -1,28 +1,16 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { storeAuthToken } from '../../redux/authSlice';
-import { useGetAuthTokenMutation } from '../../redux/apiService';
-// Placeholder component
+import { useGetAuthTokenQuery } from '../../redux/apiService';
 import { Placeholder } from '../Placeholder/Placeholder';
 
 export const AuthHOC = ({ children }) => {
-    const storedToken = useSelector(({ authSlice }) => authSlice.authToken);
-    
-    const [getAuth, auth] = useGetAuthTokenMutation({
-      fixedCacheKey: 'authToken'
-    });
-    useEffect(() => !storedToken && getAuth(), []);
+    const {
+      data,
+      isSuccess
+    } = useGetAuthTokenQuery();
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-      !storedToken && auth.status === 'fulfilled' && dispatch(storeAuthToken(auth.data.token));
-    }, [auth]);
-    
-    if (auth.status === 'fulfilled') {
+    if (isSuccess) {
       return <>{children}</>;
     }
     return <Placeholder />;
 }
 
 // # logic for no token or expired/invalid token
-// # set and get Cookies maybe?

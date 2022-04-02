@@ -14,11 +14,9 @@ export const Placeholder = () => {
     }, [progressValue]);
     
     return (
-        <>
-            <Progress
-                color="primary"
-                value={progressValue}
-            />
-        </>
+        <Progress
+            color="primary"
+            value={progressValue}
+        />
     )
 }

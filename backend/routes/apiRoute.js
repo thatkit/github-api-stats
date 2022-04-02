@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config({ path: './backend/config/.env' });
+// Github API
 const { createAppAuth  } = require('@octokit/auth-app');
 const { request } = require('@octokit/request');
 const customRequest = request.defaults({
@@ -13,9 +14,13 @@ const sumLangs = require('../middleware/sumLangs');
 
 const router = express.Router();
 
-// @ POST       auth token
+// @ GET        auth token
 // @ access     PUBLIC
-router.post('/auth', (req, res) => {
+router.get('/auth', (req, res) => {
+    console.log({ 
+        path: '/auth',
+        tokenHeader: req.headers.token
+    }) // # data / error log
     const auth = createAppAuth({
         appId: process.env.APP_ID,
         privateKey: process.env.PRIVATE_KEY,
@@ -32,6 +37,10 @@ router.post('/auth', (req, res) => {
 // @ GET        user's info
 // @ access     PUBLIC
 router.get('/user/:login', (req, res) => {
+    console.log({ 
+        path: `/user/${req.params.login}`,
+        tokenHeader: req.headers.token
+    }) // # data / error log
     customRequest(`GET /users/${req.params.login}`, {
         headers: {authorization: `token ${req.headers.token}`}
     })
@@ -46,7 +55,11 @@ router.get('/langs/:login',
     updateReposWithLangs,
     sumLangs,
     (req, res) => {
-        res.status(200).json({
+        console.log({ 
+            path: `/langs/${req.params.login}`,
+            tokenHeader: req.headers.token
+        }) // # data / error log
+            res.status(200).json({
             langs: req.langs,
             repos: req.repos
         });
