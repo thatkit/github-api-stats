@@ -16,10 +16,10 @@ import {
 } from './redux/apiService';
 
 const App = () => {
-  const [login, setLogin] = useState('aehlke');
+  const [login, setLogin] = useState('');
   const [skipQuery, setSkipQuery] = useState(true);
 
-  // QUERY for auth token
+  // QUERY for user info
   const {
     data: user,
     error: userError, // # error displaying ?
@@ -42,7 +42,9 @@ const App = () => {
     setSkipQuery(true);
     setLogin(target.value);
   }
-  const handleOnClick = () => setSkipQuery(false);
+  const handleOnClick = () => {
+    setSkipQuery(false);
+  };
 
   return (
     <AuthHOC>
