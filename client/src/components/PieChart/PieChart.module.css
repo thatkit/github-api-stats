@@ -19,3 +19,17 @@
     max-width: 100%;
     position: absolute;
 }
+
+@media (min-aspect-ratio: 422/626) {
+    .icon {
+        height: 50%;
+        aspect-ratio: 1/1;
+        max-width: min-content;
+    }
+
+    .doughnut {
+        height: 100%;
+        aspect-ratio: 1/1;
+        max-height: 100%;
+    }
+}

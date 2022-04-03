@@ -18,6 +18,14 @@
     align-items: center;
 }
 
+@media (min-aspect-ratio: 422/626) {
+    .tooltipEl {
+        height: 50%;
+        aspect-ratio: 1/1;
+        max-width: min-content;
+    }
+}
+
 span {
     margin-top: 1.5rem;
 }
