@@ -4,7 +4,6 @@ import './externalTooltip.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { externalTooltipHandler } from './externalTooltip';
-import { useEffect } from 'react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -27,7 +26,7 @@ export const PieChart = ({ user, langs, repos }) => {
     }
 
     const options = {
-        maintainAspectRatio: false,
+        // maintainAspectRatio: false,
         events: ['mousemove', 'click', 'touchstart', 'touchmove'],
         plugins: {
             tooltip: {
@@ -42,20 +41,17 @@ export const PieChart = ({ user, langs, repos }) => {
 
     return (
         <main className={`${styles.pieChart} doughnutCnt`}>
-            <div className={styles.top}>
-                <img
-                    className={styles.icon}
-                    alt="profile icon"
-                    src={user.avatar_url}
-                />
-            </div>
-            <div className={styles.bot}>
-                <Doughnut
-                    data={data}
-                    options={options}
-                    className={styles.doughnut}
-                />
-            </div>
+            <img
+                className={styles.icon}
+                alt="profile icon"
+                src={user.avatar_url}
+            />
+            <Doughnut
+                data={data}
+                options={options}
+                className={styles.doughnut}
+            />
+            <div className="tooltipEl"></div>
         </main>
     )
 }

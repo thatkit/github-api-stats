@@ -1,5 +1,5 @@
 const getOrCreateTooltip = chart => {
-  let tooltipEl = chart.canvas.parentNode.querySelector('div');
+  let tooltipEl = chart.canvas.parentNode.querySelector('.tooltipEl');
 
   if (!tooltipEl) {
     // create CONTAINER div
@@ -20,11 +20,11 @@ export const externalTooltipHandler = (context) => {
   if (tooltip.opacity === 0) {
     const chartEl = document.getElementsByClassName('doughnutCnt')[0];
     chartEl.addEventListener('mouseleave', () => {
-      tooltipEl.style.display = 'none';
+      tooltipEl.style.visibility = 'hidden';
     });
     return;
   } else {
-    tooltipEl.style.display = 'flex';
+    tooltipEl.style.visibility = 'visible';
   }
 
   // create CHILDREN elements

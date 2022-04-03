@@ -1,17 +1,21 @@
 .tooltipEl {
-    height: 49%;
-    width: 49%;
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 2px solid #fff;
+    position: relative;
+    bottom: calc(100% * 0.5 * 0.5);
     background: rgba(0, 0, 0, 0.7);
     border-radius: 50%;
     color: white;
     opacity: 1;
-    position: absolute;
     transition: all .1s ease;
     overflow: hidden;
     text-align: center;
+    visibility: hidden;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+    align-items: center;
 }
 
 span {

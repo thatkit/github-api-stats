@@ -16,7 +16,7 @@ import {
 } from './redux/apiService';
 
 const App = () => {
-  const [login, setLogin] = useState('');
+  const [login, setLogin] = useState('aehlke');
   const [skipQuery, setSkipQuery] = useState(true);
 
   // QUERY for auth token
@@ -51,12 +51,16 @@ const App = () => {
             handleOnChange={handleOnChange}
             handleOnClick={handleOnClick}
           />
-          {(isUserFound && areLangsAndReposLoaded) && (
-            <>
-              <Header user={user.data} />
-              <PieChart user={user.data} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
-            </>
-          )}
+          {(isUserFound && areLangsAndReposLoaded)
+            ? (<>
+                <Header user={user.data} />
+                <PieChart user={user.data} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
+              </>)
+            : (<>
+                <div></div>
+                <div></div>
+              </>)
+          }
           <Footer />
       </Container>
     </AuthHOC>

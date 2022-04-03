@@ -1,9 +1,13 @@
 .layout {
     height: 100vh;
-    width: 100%;
-    padding: 2rem 1rem; /*need variables from sass*/
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    width: 100vw;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-areas: 
+        "input"
+        "header"
+        "chart"
+        "footer";
+    grid-template-rows: 6% 18% 70% 6%;
+    grid-template-columns: 1fr;
 }
