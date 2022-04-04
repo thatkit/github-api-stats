@@ -10,22 +10,25 @@ import { Header } from './components/Header/Header';
 import { HeaderPlaceholder } from './components/Header/HeaderPlaceholder/HeaderPlaceholder';
 import { Footer } from './components/Footer/Footer';
 // React
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Redux
+import { useSelector } from 'react-redux';
 import {
   useGetUserByLoginQuery,
   useGetLangsByLoginQuery
 } from './redux/apiService';
 
 const App = () => {
-  const [login, setLogin] = useState('');
   const [skipQuery, setSkipQuery] = useState(true);
+
+  // Redux input state
+  const login = useSelector(({ inputSlice }) => inputSlice.login);
 
   // QUERY for user info
   const {
     data: user,
     error: userError, // # error displaying ?
-    isSuccess: isUserFound
+    isSuccess: isUserFound,
   } = useGetUserByLoginQuery(login, {
     skip: skipQuery
   });
@@ -34,16 +37,11 @@ const App = () => {
   const {
     data: langsAndRepos,
     error: langsError, // # error displaying ?
-    isSuccess: areLangsAndReposLoaded
+    isSuccess: areLangsAndReposLoaded,
   } = useGetLangsByLoginQuery(login, {
     skip: skipQuery
   });
 
-  // Search field event handlers
-  const handleOnChange = ({ target }) => {
-    setSkipQuery(true);
-    setLogin(target.value);
-  }
   const handleOnClick = () => {
     setSkipQuery(false);
   };
@@ -52,7 +50,6 @@ const App = () => {
     <AuthHOC>
       <Container className={styles.layout}>
           <Search
-            handleOnChange={handleOnChange}
             handleOnClick={handleOnClick}
           />
           {(isUserFound && areLangsAndReposLoaded)

@@ -3,7 +3,7 @@ import {
   exampleUser,
   exampleLangs,
   exampleRepos
-} from '../../exampleData.js';
+} from '../../../helpers/exampleData.js';
 
 export const PieChartPlaceholder = () => {
     return (
