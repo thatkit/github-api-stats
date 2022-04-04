@@ -1,6 +1,8 @@
+// Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './PieChart.module.css';
 import './externalTooltip.css';
+// Chart setup
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { externalTooltipHandler } from './externalTooltip';

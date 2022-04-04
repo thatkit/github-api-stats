@@ -4,8 +4,10 @@ import { Container } from 'reactstrap';
 // Components
 import { AuthHOC } from './components/AuthHOC/AuthHOC';
 import { PieChart } from './components/PieChart/PieChart';
+import { PieChartPlaceholder } from './components/PieChart/PieChartPlaceholder/PieChartPlaceholder';
 import { Search } from './components/Search/Search';
 import { Header } from './components/Header/Header';
+import { HeaderPlaceholder } from './components/Header/HeaderPlaceholder/HeaderPlaceholder';
 import { Footer } from './components/Footer/Footer';
 // React
 import { useState } from 'react';
@@ -59,8 +61,8 @@ const App = () => {
                 <PieChart user={user.data} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
               </>)
             : (<>
-                <div></div>
-                <div></div>
+                <HeaderPlaceholder />
+                <PieChartPlaceholder />
               </>)
           }
           <Footer />

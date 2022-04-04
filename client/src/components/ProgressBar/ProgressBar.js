@@ -3,7 +3,7 @@ import { Progress } from 'reactstrap';
 // React
 import { useEffect, useState } from 'react';
 
-export const Placeholder = () => {
+export const ProgressBar = () => {
     const [progressValue, setProgressValue] = useState(0);
     useEffect(() => {
         let firstIntervalId;

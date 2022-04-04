@@ -1,5 +1,5 @@
 import { useGetAuthTokenQuery } from '../../redux/apiService';
-import { Placeholder } from '../Placeholder/Placeholder';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 export const AuthHOC = ({ children }) => {
     const {
@@ -10,7 +10,7 @@ export const AuthHOC = ({ children }) => {
     if (isSuccess) {
       return <>{children}</>;
     }
-    return <Placeholder />;
+    return <ProgressBar />;
 }
 
 // # logic for no token or expired/invalid token
