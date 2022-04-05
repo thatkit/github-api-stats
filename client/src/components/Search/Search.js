@@ -2,7 +2,8 @@
 import {
     InputGroup,
     Input,
-    Button
+    Button,
+    FormFeedback
 } from 'reactstrap';
 // Redux
 import { useDispatch } from 'react-redux';
@@ -22,10 +23,14 @@ export const Search = ({ handleOnClick }) => {
                 onChange={handleOnChange}
                 autoFocus={true}
                 onKeyDown={handleOnKeyDownEnter}
+                invalid={true}
             />
             <Button
                 onClick={handleOnClick}
             >Search</Button>
+            <FormFeedback tooltip>
+                Invalid thingy
+            </FormFeedback>
         </InputGroup>
     )
 }
