@@ -28,6 +28,6 @@ export const apiService = createApi({
 
 export const {
     useGetAuthTokenQuery,
-    useGetUserByLoginQuery,
-    useGetLangsByLoginQuery
+    useLazyGetUserByLoginQuery,
+    useLazyGetLangsByLoginQuery
 } = apiService;

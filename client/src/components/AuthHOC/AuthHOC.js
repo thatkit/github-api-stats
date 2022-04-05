@@ -2,10 +2,7 @@ import { useGetAuthTokenQuery } from '../../redux/apiService';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 export const AuthHOC = ({ children }) => {
-    const {
-      data,
-      isSuccess
-    } = useGetAuthTokenQuery();
+    const { isSuccess } = useGetAuthTokenQuery();
 
     if (isSuccess) {
       return <>{children}</>;

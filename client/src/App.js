@@ -9,42 +9,38 @@ import { Search } from './components/Search/Search';
 import { Header } from './components/Header/Header';
 import { HeaderPlaceholder } from './components/Header/HeaderPlaceholder/HeaderPlaceholder';
 import { Footer } from './components/Footer/Footer';
-// React
-import { useEffect, useState } from 'react';
 // Redux
 import { useSelector } from 'react-redux';
 import {
-  useGetUserByLoginQuery,
-  useGetLangsByLoginQuery
+  useLazyGetUserByLoginQuery,
+  useLazyGetLangsByLoginQuery
 } from './redux/apiService';
 
 const App = () => {
-  const [skipQuery, setSkipQuery] = useState(true);
-
   // Redux input state
   const login = useSelector(({ inputSlice }) => inputSlice.login);
 
-  // QUERY for user info
-  const {
-    data: user,
-    error: userError, // # error displaying ?
-    isSuccess: isUserFound,
-  } = useGetUserByLoginQuery(login, {
-    skip: skipQuery
-  });
+  // Lazy Query for user info
+  const [
+    getUserByLogin,
+    { data: userData, isSuccess: isUserSuccess}
+  ] = useLazyGetUserByLoginQuery();
+  
+  // Lazy Query for repos and langs
+  const [
+    getLangsByLogin,
+    { data: langsAndReposData, isSuccess: areLangsAndReposSuccess}
+  ] = useLazyGetLangsByLoginQuery();
 
-  // QUERY for repos and langs
-  const {
-    data: langsAndRepos,
-    error: langsError, // # error displaying ?
-    isSuccess: areLangsAndReposLoaded,
-  } = useGetLangsByLoginQuery(login, {
-    skip: skipQuery
-  });
-
+  // Dispatch queries
   const handleOnClick = () => {
-    setSkipQuery(false);
-  };
+    if (login) {
+      getUserByLogin(login, true);
+      getLangsByLogin(login, true);
+      return null;
+    }
+    console.log('Please, insert a username'); // # response in input feedback
+  }
 
   return (
     <AuthHOC>
@@ -52,10 +48,14 @@ const App = () => {
           <Search
             handleOnClick={handleOnClick}
           />
-          {(isUserFound && areLangsAndReposLoaded)
+          {(isUserSuccess && areLangsAndReposSuccess)
             ? (<>
-                <Header user={user.data} />
-                <PieChart user={user.data} langs={langsAndRepos.langs} repos={langsAndRepos.repos} />
+                <Header user={userData.data} />
+                <PieChart
+                  user={userData.data}
+                  langs={langsAndReposData.langs}
+                  repos={langsAndReposData.repos} 
+                />
               </>)
             : (<>
                 <HeaderPlaceholder />
