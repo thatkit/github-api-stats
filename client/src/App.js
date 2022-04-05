@@ -10,11 +10,13 @@ import { Header } from './components/Header/Header';
 import { HeaderPlaceholder } from './components/Header/HeaderPlaceholder/HeaderPlaceholder';
 import { Footer } from './components/Footer/Footer';
 // Redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   useLazyGetUserByLoginQuery,
   useLazyGetLangsByLoginQuery
 } from './redux/apiService';
+import { updateErrorMes } from './redux/inputSlice';
+import { useEffect } from 'react';
 
 const App = () => {
   // Redux input state
@@ -23,7 +25,7 @@ const App = () => {
   // Lazy Query for user info
   const [
     getUserByLogin,
-    { data: userData, isSuccess: isUserSuccess}
+    { data: userData, isSuccess: isUserSuccess, isError, error}
   ] = useLazyGetUserByLoginQuery();
   
   // Lazy Query for repos and langs
@@ -39,8 +41,15 @@ const App = () => {
       getLangsByLogin(login, true);
       return null;
     }
-    console.log('Please, insert a username'); // # response in input feedback
   }
+
+  // Error message update
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isError) {
+      dispatch(updateErrorMes(error.data.response.data.message));
+    }
+  }, [dispatch, isError, error]);
 
   return (
     <AuthHOC>

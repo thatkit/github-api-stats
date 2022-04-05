@@ -23,7 +23,7 @@ const getAuth = (req, res) => {
     
     auth({ type: 'installation' })
         .then(({ token }) => res.status(200).json({ token }))
-        .catch(err => console.log(err)); // # error handler
+        .catch(err => console.log(err)); // # error handler needed
 }
 
 // @ GET        user's info
@@ -37,7 +37,10 @@ const getUser = (req, res) => {
         headers: {authorization: `token ${req.headers.token}`}
     })
         .then(user => res.status(200).json(user))
-        .catch(err => console.log(err)); // # error handler needed
+        .catch(err => {
+            console.log(err);
+            res.status(404).json(err);
+        }); // # error handler
 }
 
 // @ GET        all languages
