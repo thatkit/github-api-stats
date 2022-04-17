@@ -17,6 +17,7 @@ import {
 } from './redux/apiService';
 import { updateErrorMes } from './redux/inputSlice';
 import { useEffect } from 'react';
+import { LoadingBar } from './components/LoadingBar/LoadingBar';
 
 const App = () => {
   // Redux input state
@@ -25,13 +26,22 @@ const App = () => {
   // Lazy Query for user info
   const [
     getUserByLogin,
-    { data: userData, isSuccess: isUserSuccess, isError, error}
+    {
+      data: userData,
+      isSuccess: isUserSuccess,
+      isFetching: isUserFetching,
+      isError, error
+    }
   ] = useLazyGetUserByLoginQuery();
   
   // Lazy Query for repos and langs
   const [
     getLangsByLogin,
-    { data: langsAndReposData, isSuccess: areLangsAndReposSuccess}
+    {
+      data: langsAndReposData,
+      isSuccess: areLangsAndReposSuccess,
+      isFetching: areLangsAndReposSuccessFetching
+    }
   ] = useLazyGetLangsByLoginQuery();
 
   // Dispatch queries
@@ -54,6 +64,7 @@ const App = () => {
   return (
     <AuthHOC>
       <Container className={styles.layout}>
+          {(isUserFetching || areLangsAndReposSuccessFetching) && <LoadingBar />}
           <Search
             handleOnClick={handleOnClick}
           />
