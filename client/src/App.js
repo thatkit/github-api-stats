@@ -56,9 +56,9 @@ const App = () => {
   // Error message update
   const dispatch = useDispatch();
   useEffect(() => {
-    if (isError) {
-      dispatch(updateErrorMes(error.data.response.data.message));
-    }
+    isError
+      ? dispatch(updateErrorMes(error.data.response.data.message))
+      : dispatch(updateErrorMes(''));
   }, [dispatch, isError, error]);
 
   return (
