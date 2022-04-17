@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const apiService = createApi({
     reducerPath: 'apiService',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.PUBLIC_URL || 'http://localhost:5000/api',
+        baseUrl: 'https://github-api-stats.herokuapp.com' || 'http://localhost:5000/api',
         prepareHeaders: (headers, { getState }) => {
             const tokenData = getState().apiService.queries['getAuthToken(undefined)'].data;
             if (tokenData) {
