@@ -1,5 +1,9 @@
 # Github user's stats
 
+## Deployment
+
+[Heroku URL](https://github-api-stats.herokuapp.com/)
+
 ## App description
 
 This apps enables inspection of a Github user's basic stats (name, location, icon image) including a **chart of all the languages the user has applied** as well as corresponding repos. 
