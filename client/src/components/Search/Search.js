@@ -12,7 +12,7 @@ import { updateLogin } from '../../redux/inputSlice';
 export const Search = ({ handleOnClick }) => {
     // Search field event handlers
     const dispatch = useDispatch();
-    const handleOnChange = ({ target }) => dispatch(updateLogin(target.value));
+    const handleOnChange = ({ target }) => dispatch(updateLogin(target.value.toLowerCase()));
     const handleOnKeyDownEnter = ({ code }) => code === 'Enter' && handleOnClick();
 
     // Error displaying
@@ -22,8 +22,12 @@ export const Search = ({ handleOnClick }) => {
         <InputGroup>
             <Input
                 placeholder="Github username"
-                onChange={handleOnChange}
+                autoComplete="username"
+                spellCheck="false"
+                autoCorrect="off"
+                autoCapitalize="off"
                 autoFocus={true}
+                onChange={handleOnChange}
                 onKeyDown={handleOnKeyDownEnter}
                 invalid={Boolean(errorMes)}
             />
