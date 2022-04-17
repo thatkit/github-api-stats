@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "mockup": "nodemon mockupBackend/server.js",
-    "server": "nodemon backend/server.js",
-    "client": "npm run start --prefix client",
+    "setup:client": "npm run install --prefix client",
+    "build:client": "npm run build --prefix client",
+    "start": "nodemon backend/server.js",
+    "client:dev": "npm run start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
