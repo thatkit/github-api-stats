@@ -17,8 +17,8 @@ const updateReposWithLangs = (req, res, next) => {
                         langs: data
                     })
                 })
-                .catch(err => reject(err)); // # error handler needed
-        });
+                .catch(err => res.status(404).json(err));
+            });
     });
     // (2) Waiting for all repos to get updated with langs,
     // AND assigning repos & langs array data to request
@@ -30,7 +30,7 @@ const updateReposWithLangs = (req, res, next) => {
             repos.forEach(repo => req.langs.push(repo.langs))
             next();
         })
-        .catch(err => console.log(err)); // # error handler needed;
+        .catch(err => res.status(404).json(err));
 }
 
 module.exports = updateReposWithLangs;

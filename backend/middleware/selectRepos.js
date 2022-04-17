@@ -22,7 +22,7 @@ const selectRepos = (req, res, next) => {
             req.repos = repos;
             next();
         })
-        .catch(err => console.log(err)); // # error handler needed
+        .catch(err => res.status(404).json(err));
 }
 
 module.exports = selectRepos;

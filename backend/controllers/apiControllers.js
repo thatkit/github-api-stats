@@ -9,10 +9,10 @@ const customRequest = request.defaults({
 // @ GET        auth token
 // @ access     PUBLIC
 const getAuth = (req, res) => {
-    console.log({ 
-        path: '/auth',
-        tokenHeader: req.headers.token
-    }) // # data / error log
+    // console.log({ 
+    //     path: '/auth',
+    //     tokenHeader: req.headers.token
+    // }) // data/error log
     const auth = createAppAuth({
         appId: process.env.APP_ID,
         privateKey: process.env.PRIVATE_KEY,
@@ -23,33 +23,30 @@ const getAuth = (req, res) => {
     
     auth({ type: 'installation' })
         .then(({ token }) => res.status(200).json({ token }))
-        .catch(err => console.log(err)); // # error handler needed
+        .catch(err => res.status(404).json(err));
 }
 
 // @ GET        user's info
 // @ access     PUBLIC
 const getUser = (req, res) => {
-    console.log({ 
-        path: `/user/${req.params.login}`,
-        tokenHeader: req.headers.token
-    }) // # data / error log
+    // console.log({ 
+    //     path: `/user/${req.params.login}`,
+    //     tokenHeader: req.headers.token
+    // }) // data/error log
     customRequest(`GET /users/${req.params.login}`, {
         headers: {authorization: `token ${req.headers.token}`}
     })
         .then(user => res.status(200).json(user))
-        .catch(err => {
-            console.log(err);
-            res.status(404).json(err);
-        }); // # error handler
+        .catch(err => res.status(404).json(err));
 }
 
 // @ GET        all languages
 // @ access     PUBLIC
 const getLangs = (req, res) => {
-    console.log({ 
-        path: `/langs/${req.params.login}`,
-        tokenHeader: req.headers.token
-    }) // # data / error log
+    // console.log({ 
+    //     path: `/langs/${req.params.login}`,
+    //     tokenHeader: req.headers.token
+    // }) // data/error log
     res.status(200).json({
         langs: req.langs,
         repos: req.repos
