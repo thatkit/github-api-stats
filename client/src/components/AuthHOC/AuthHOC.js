@@ -1,5 +1,5 @@
 import { useGetAuthTokenQuery } from '../../redux/apiService';
-import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { LoadingBar } from '../LoadingBar/LoadingBar';
 
 export const AuthHOC = ({ children }) => {
     const { isSuccess } = useGetAuthTokenQuery();
@@ -7,7 +7,5 @@ export const AuthHOC = ({ children }) => {
     if (isSuccess) {
       return <>{children}</>;
     }
-    return <ProgressBar />;
+    return <LoadingBar />;
 }
-
-// # logic for no token or expired/invalid token
